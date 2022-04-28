@@ -1,0 +1,32 @@
+html{
+       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+header h1 {
+  font-weight: 400;
+}
+
+header{
+       display: flex;
+       justify-content: space-between;
+       margin: 0 3rem;
+}
+
+nav{
+       width: 20rem;
+}
+
+ul{
+       display: flex;
+       justify-content: space-between;
+}
+
+li{
+       list-style: none;
+       font-size: 1.5rem;
+}
+
+a{
+       text-decoration: none;
+       color: black;
+}
