@@ -38,3 +38,24 @@ a{
        width: 95vw;
        margin : 1rem
 }
+
+article {
+       display: flex;
+       margin : 1.5rem
+}
+
+.content{
+       text-align:center ;
+       font-size: 1.5rem;
+       margin-right: 2rem;
+}
+
+footer{
+       background-color: black;
+       color:white;
+       display: flex;
+       justify-content: center;
+       height: 4rem;
+       align-items: center;
+       font-size: 1.5rem;
+}
