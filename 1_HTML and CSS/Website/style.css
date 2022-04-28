@@ -13,7 +13,9 @@ header{
 }
 
 nav{
-       width: 20rem;
+    width: 20rem;
+    margin-top: 1rem;
+    margin-right: 3rem;
 }
 
 ul{
@@ -29,4 +31,10 @@ li{
 a{
        text-decoration: none;
        color: black;
+}
+
+
+.showcase-img{
+       width: 95vw;
+       margin : 1rem
 }
