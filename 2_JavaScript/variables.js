@@ -35,7 +35,7 @@
 //        var a = 2
 //        console.log(a) // 2
 // }
-// test()
+// test() // fuction invokation
 // console.log(a) // this is not allowed 
 
 
@@ -48,13 +48,38 @@
 // console.log(b) // downside of using var 
 // Solution - use let to avoid scope of var
 
-if(true){
-       let c = 'pep'
-       console.log(c)
-} // this is block
+// if(true){
+//        let c = 'pep'
+//        console.log(c)
+// } // this is block
 
-console.log(c)
+// console.log(c)
 
+
+// var b = true;
+// if(b == false)
+// {
+//     var a = 23;
+//     console.log(a);
+// }
+// console.log(a); 
+
+
+
+// const a  = 2;// Declaration
+
+
+
+// console.log(a)
+
+
+// const a = 6 // No Redeclartion
+// console.log(a)
+
+
+// a = 'pepcoding' // No Reassigning 
+
+// console.log(a)
 
 
 
