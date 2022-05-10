@@ -56,6 +56,8 @@
 
  delete captainAmerica.age // delete a key
 
+ captainAmerica.friends.push('Natasha')
+
  console.log(captainAmerica)
 
 
