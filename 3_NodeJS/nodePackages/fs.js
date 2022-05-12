@@ -1,5 +1,7 @@
 const fs = require("fs");
 
+const path = require('path')
+
 
 /// Filess ///
 
@@ -68,8 +70,40 @@ const fs = require("fs");
 
 // readdirSync
 
-let folderContent = fs.readdirSync('D:\\Batches\\FJP-8\\2_JavaScript')
-console.log(folderContent)
+// let folderContent = fs.readdirSync('D:\\Batches\\FJP-8\\2_JavaScript')
+// console.log(folderContent)
+
+
+
+// Copying a file from one dir to another dir
+
+let srcFilePath = 'D:\\Batches\\FJP-8\\3_NodeJS\\nodePackages\\myDirectory2\\f1.txt'
+
+let destinationFolderPath = 'D:\\Batches\\FJP-8\\2_JavaScript\\'
+
+
+let toBeCopiedFileBaseName = path.basename(srcFilePath)
+
+console.log(toBeCopiedFileBaseName) // f1.txt
+
+let destPathComplete = path.join(destinationFolderPath , toBeCopiedFileBaseName)
+console.log(destPathComplete)
+
+
+fs.copyFileSync(srcFilePath , destPathComplete )
+console.log('File Copied')
+
+fs.unlinkSync(srcFilePath)
+
+
+
+
+
+
+
+
+
+
 
 
 
