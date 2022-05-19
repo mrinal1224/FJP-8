@@ -53,14 +53,16 @@ function organizeFn(dirpath) {
 
     if (doesExist == true) {
       destPath = path.join(dirpath, "organizedFiles");
-      // so first I will have to make a path for a folder 
+      // so first I will have to make a path for a folder
       //D:\Batches\FJP-8\3_NodeJS\test Folder\organizedFiles
+      if (fs.existsSync(destPath) == false) {
+        fs.mkdirSync(destPath); // we will only create a folder if it does not already exists
+      } else {
+        console.log("Folder already exists");
+      }
     }
-
-    if (fs.existsSync(destPath) == false) {
-      fs.mkdirSync(destPath);
-    } else {
-      console.log("Folder already exists");
+    else{
+           console.log('Please enter a valid Path')
     }
   }
 }
