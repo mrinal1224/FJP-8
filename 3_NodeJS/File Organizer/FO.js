@@ -65,4 +65,26 @@ function organizeFn(dirpath) {
            console.log('Please enter a valid Path')
     }
   }
+
+
+  organizeHelper(dirpath)
+
+}
+
+
+function organizeHelper(src , dest){
+      let childNames = fs.readdirSync(src) 
+      console.log(childNames)
+
+      for(let i=0 ; i<childNames.length ; i++){
+              let childAddress = path.join(src , childNames[i]) // path is identified for all children
+              let checkForFile = fs.lstatSync(childAddress).isFile()
+              console.log(childAddress + " " + checkForFile)
+
+              if(checkForFile == true){
+                 
+              }
+      }
+
+
 }
