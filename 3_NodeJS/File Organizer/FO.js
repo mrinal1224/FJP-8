@@ -10,24 +10,57 @@
 
 // console.log(Number(firstNumber) + Number(secondNumber))
 
+const fs = require("fs");
+const path = require("path");
+
 let inputArr = process.argv.slice(2);
 
 //console.log(inputArr);
 
 let command = inputArr[0];
 
+console.log(inputArr);
+
 switch (command) {
   case "tree":
     console.log("Tree command will be Executed");
     break;
   case "organize":
-    console.log("Organize command will be Executed");
+    organizeFn(inputArr[1]); // dirPath
     break;
   case "help":
-    console.log("help command will be Executed");
+    console.log(` List of all commands -
+                     1) Tree Command - node FO.js tree <dirPath>
+                     2) Organize Command- node FO.js organize <dirname>
+                     3) Help Command - node FO.js help`);
     break;
 
   default:
     console.log("Enter a Valid Command");
     break;
+}
+
+function organizeFn(dirpath) {
+  let destPath;
+
+  if (dirpath == undefined) {
+    console.log("Please enter a valid Directory Path");
+    // check wheter folder path is given or not
+    return;
+  } else {
+    let doesExist = fs.existsSync(dirpath);
+    // here we are checking the folder path exists or not
+
+    if (doesExist == true) {
+      destPath = path.join(dirpath, "organizedFiles");
+      // so first I will have to make a path for a folder 
+      //D:\Batches\FJP-8\3_NodeJS\test Folder\organizedFiles
+    }
+
+    if (fs.existsSync(destPath) == false) {
+      fs.mkdirSync(destPath);
+    } else {
+      console.log("Folder already exists");
+    }
+  }
 }
