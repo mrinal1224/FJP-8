@@ -12,7 +12,7 @@ let str = 'pepcoder'
 
 // 1.slice
 
-//slice(start , end+1)
+//slice(start)
 
 // let slicedStr =  str.slice(3 , 8)
 
