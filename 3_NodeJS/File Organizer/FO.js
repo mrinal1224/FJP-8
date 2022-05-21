@@ -86,7 +86,7 @@ function organizeFn(dirpath) {
     }
   }
 
-  organizeHelper(dirpath);
+  organizeHelper(dirpath , destPath);
 }
 
 function organizeHelper(src, dest) {
@@ -101,6 +101,9 @@ function organizeHelper(src, dest) {
     if (checkForFile == true) {
       let fileCategory = getCategory(childNames[i]);
       console.log(childNames[i] + " belongs to " + fileCategory)
+
+
+      sendFiles(childAddress , dest , fileCategory)
 
     }
   }
@@ -122,4 +125,30 @@ function getCategory(fileName) {
   }
 
   return "others";
+}
+
+
+function sendFiles(srcFilePath , dest , fileCategory){
+  let catPath = path.join(dest , fileCategory) // here we are making categoryPath to create folders
+
+
+  if(fs.existsSync(catPath)==false){
+    // check for if the category folder Alredy Exists
+    fs.mkdirSync(catPath)
+  }
+
+
+  let fileName = path.basename(srcFilePath)
+  let destPath = path.join(catPath , fileName)
+
+
+  fs.copyFileSync(srcFilePath , destPath)
+  
+
+  fs.unlinkSync(srcFilePath)
+
+  console.log(fileName + 'Copied to' + fileCategory)
+
+
+
 }
