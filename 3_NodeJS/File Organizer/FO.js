@@ -15,9 +15,8 @@ const path = require("path");
 
 let inputArr = process.argv.slice(2);
 
-
 let types = {
-  media: ["mp4", "mkv", "mp3"],
+  media: ["mp4", "mkv", "mp3", "jpg"],
   archives: ["zip", "7z", "rar", "tar", "gz", "ar", "iso", "xz"],
   documents: [
     "docx",
@@ -99,17 +98,28 @@ function organizeHelper(src, dest) {
     let checkForFile = fs.lstatSync(childAddress).isFile();
     // console.log(childAddress + " " + checkForFile);
 
+    if (checkForFile == true) {
+      let fileCategory = getCategory(childNames[i]);
+      console.log(childNames[i] + " belongs to " + fileCategory)
 
-    if(checkForFile == true){
-          let fileCategory = getCategory(childNames[i])
     }
-
-
-
   }
 }
 
-function getCategory(fileName){
-      let ext = path.extname(fileName)
-      console.log(ext)
+function getCategory(fileName) {
+  let ext = path.extname(fileName);
+  ext = ext.slice(1);
+  //console.log(ext)
+
+  for (let type in types) {
+    let cTypeArr = types[type];
+
+    for (let i = 0; i < cTypeArr.length; i++) {
+      if (ext == cTypeArr[i]) {
+        return type;
+      }
+    }
+  }
+
+  return "others";
 }
