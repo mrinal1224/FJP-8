@@ -138,14 +138,14 @@ function sendFiles(srcFilePath , dest , fileCategory){
   }
 
 
-  let fileName = path.basename(srcFilePath)
-  let destPath = path.join(catPath , fileName)
+  let fileName = path.basename(srcFilePath) // we took out the name of the files
+  let destPath = path.join(catPath , fileName)// here we created a path for the files with theri specific Category
 
 
-  fs.copyFileSync(srcFilePath , destPath)
+  fs.copyFileSync(srcFilePath , destPath)// copied files from src to destn
   
 
-  fs.unlinkSync(srcFilePath)
+  fs.unlinkSync(srcFilePath) // deleted the files from the source
 
   console.log(fileName + 'Copied to' + fileCategory)
 
