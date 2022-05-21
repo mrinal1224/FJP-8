@@ -86,7 +86,7 @@ function organizeFn(dirpath) {
     }
   }
 
-  organizeHelper(dirpath , destPath);
+  organizeHelper(dirpath, destPath);
 }
 
 function organizeHelper(src, dest) {
@@ -100,11 +100,9 @@ function organizeHelper(src, dest) {
 
     if (checkForFile == true) {
       let fileCategory = getCategory(childNames[i]);
-      console.log(childNames[i] + " belongs to " + fileCategory)
+      console.log(childNames[i] + " belongs to " + fileCategory);
 
-
-      sendFiles(childAddress , dest , fileCategory)
-
+      sendFiles(childAddress, dest, fileCategory);
     }
   }
 }
@@ -127,28 +125,20 @@ function getCategory(fileName) {
   return "others";
 }
 
+function sendFiles(srcFilePath, dest, fileCategory) {
+  let catPath = path.join(dest, fileCategory); // here we are making categoryPath to create folders
 
-function sendFiles(srcFilePath , dest , fileCategory){
-  let catPath = path.join(dest , fileCategory) // here we are making categoryPath to create folders
-
-
-  if(fs.existsSync(catPath)==false){
+  if (fs.existsSync(catPath) == false) {
     // check for if the category folder Alredy Exists
-    fs.mkdirSync(catPath)
+    fs.mkdirSync(catPath);
   }
 
+  let fileName = path.basename(srcFilePath); // we took out the name of the files
+  let destPath = path.join(catPath, fileName); // here we created a path for the files with theri specific Category
 
-  let fileName = path.basename(srcFilePath) // we took out the name of the files
-  let destPath = path.join(catPath , fileName)// here we created a path for the files with theri specific Category
+  fs.copyFileSync(srcFilePath, destPath); // copied files from src to destn
 
+  fs.unlinkSync(srcFilePath); // deleted the files from the source
 
-  fs.copyFileSync(srcFilePath , destPath)// copied files from src to destn
-  
-
-  fs.unlinkSync(srcFilePath) // deleted the files from the source
-
-  console.log(fileName + 'Copied to' + fileCategory)
-
-
-
+  console.log(fileName + "Copied to" + fileCategory);
 }
