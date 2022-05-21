@@ -15,6 +15,28 @@ const path = require("path");
 
 let inputArr = process.argv.slice(2);
 
+
+let types = {
+  media: ["mp4", "mkv", "mp3"],
+  archives: ["zip", "7z", "rar", "tar", "gz", "ar", "iso", "xz"],
+  documents: [
+    "docx",
+    "doc",
+    "pdf",
+    "xlsx",
+    "xls",
+    "odt",
+    "ods",
+    "odp",
+    "odg",
+    "odf",
+    "txt",
+    "ps",
+    "tex",
+  ],
+  app: ["exe", "dmg", "pkg", "deb"],
+};
+
 //console.log(inputArr);
 
 let command = inputArr[0];
@@ -70,11 +92,24 @@ function organizeFn(dirpath) {
 
 function organizeHelper(src, dest) {
   let childNames = fs.readdirSync(src);
-  console.log(childNames);
+  // console.log(childNames);
 
   for (let i = 0; i < childNames.length; i++) {
     let childAddress = path.join(src, childNames[i]); // path is identified for all children
     let checkForFile = fs.lstatSync(childAddress).isFile();
-    console.log(childAddress + " " + checkForFile);
+    // console.log(childAddress + " " + checkForFile);
+
+
+    if(checkForFile == true){
+          let fileCategory = getCategory(childNames[i])
+    }
+
+
+
   }
+}
+
+function getCategory(fileName){
+      let ext = path.extname(fileName)
+      console.log(ext)
 }
