@@ -15,13 +15,13 @@ const path = require("path");
 
 const orgaizeWaaliFile = require("./commands/organize");
 
+const helpModule = require("./commands/help");
+
 let inputArr = process.argv.slice(2);
 
 //console.log(inputArr);
 
 let command = inputArr[0];
-
-console.log(inputArr);
 
 switch (command) {
   case "tree":
@@ -31,13 +31,14 @@ switch (command) {
     orgaizeWaaliFile.organizeFnKey(inputArr[1]); // dirPath
     break;
   case "help":
-    console.log(` List of all commands -
-                     1) Tree Command - node FO.js tree <dirPath>
-                     2) Organize Command- node FO.js organize <dirname>
-                     3) Help Command - node FO.js help`);
+    helpModule.helpFnKey();
+
     break;
 
   default:
     console.log("Enter a Valid Command");
     break;
 }
+
+
+
