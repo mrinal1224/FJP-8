@@ -10,12 +10,13 @@
 
 // console.log(Number(firstNumber) + Number(secondNumber))
 
-const fs = require("fs");
-const path = require("path");
+
 
 const orgaizeWaaliFile = require("./commands/organize");
 
 const helpModule = require("./commands/help");
+
+const treeModule = require('./commands/tree')
 
 let inputArr = process.argv.slice(2);
 
@@ -25,7 +26,7 @@ let command = inputArr[0];
 
 switch (command) {
   case "tree":
-    treeFn(inputArr[1])
+    treeModule.treeFnKey(inputArr[1])
     break;
   case "organize":
     orgaizeWaaliFile.organizeFnKey(inputArr[1]); // dirPath
@@ -41,37 +42,18 @@ switch (command) {
 }
 
 
-function treeFn(dirPath){
-    if(dirPath==undefined){
-      console.log('Please enter a valid directory path')
-    }
-
-    else{
-        let doesExist = fs.existsSync(dirPath)
 
 
-        if(doesExist==true){
-          treeHelper(dirPath , ' ' )
-        }
-    }
-}
 
 
-function treeHelper(targetPath , indent){
-         let checkForFile = fs.lstatSync(targetPath).isFile()
-
-
-         if(checkForFile == true){
-           let fileName = path.basename(targetPath)
-           console.log(indent + '|---' + fileName)
-         }
+       
 
 
 
 
 
 
-}
+
 
 
 
