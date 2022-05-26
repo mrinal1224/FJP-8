@@ -25,7 +25,7 @@ let command = inputArr[0];
 
 switch (command) {
   case "tree":
-    console.log("Tree command will be Executed");
+    treeFn(inputArr[1])
     break;
   case "organize":
     orgaizeWaaliFile.organizeFnKey(inputArr[1]); // dirPath
@@ -38,6 +38,39 @@ switch (command) {
   default:
     console.log("Enter a Valid Command");
     break;
+}
+
+
+function treeFn(dirPath){
+    if(dirPath==undefined){
+      console.log('Please enter a valid directory path')
+    }
+
+    else{
+        let doesExist = fs.existsSync(dirPath)
+
+
+        if(doesExist==true){
+          treeHelper(dirPath , ' ' )
+        }
+    }
+}
+
+
+function treeHelper(targetPath , indent){
+         let checkForFile = fs.lstatSync(targetPath).isFile()
+
+
+         if(checkForFile == true){
+           let fileName = path.basename(targetPath)
+           console.log(indent + '|---' + fileName)
+         }
+
+
+
+
+
+
 }
 
 
