@@ -21,6 +21,20 @@
 
     <script>
       // Fix the list by inserting the missing element using querySelectorAll and insertBefore
+
+      let list = document.querySelector("ul")
+
+      let allListItems = document.querySelectorAll('li') 
+
+     let eightElem = allListItems[6]
+
+     let sevenElem = document.createElement('li')
+
+     sevenElem.innerText = '7'
+
+     list.insertBefore(sevenElem , eightElem)
+
+
      
     </script>
   </body>

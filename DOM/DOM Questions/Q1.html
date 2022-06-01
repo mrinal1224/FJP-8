@@ -9,39 +9,41 @@
   <body>
     <button>Say Hello</button>
 
-    
-
     <script>
       //Q1 on Clicking the Button append hello to the page
 
-       // this method is used to identify anbnd select the Element
+      // this method is used to identify anbnd select the Element
 
-      let btn = document.querySelector('button')
+      let btn = document.querySelector("button");
 
-
-      btn.addEventListener('click' , function(){
-        console.log('button clicked')
-        let divElem = document.createElement('div')
+      btn.addEventListener("click", function () {
+        console.log("button clicked");
+        let divElem = document.createElement("div");
         //create Element lets you Create a new Element in the DOM
 
-        divElem.innerText='Hello'
-         // inner text is a property by which you can access and add or remove Text inisde an element
+        divElem.innerText = "Hello";
+        // inner text is a property by which you can access and add or remove Text inisde an element
 
+        let bodyElem = document.querySelector("body");
 
-         let bodyElem = document.querySelector('body')
-
-         bodyElem.appendChild(divElem)
-           // this method allows you to add new Children inside your selected element
-      })
-
-
-
-
-      
-      
+        bodyElem.appendChild(divElem);
+        // this method allows you to add new Children inside your selected element
+      });
     </script>
   </body>
 </html>
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
