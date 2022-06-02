@@ -67,47 +67,75 @@
     </select>
 
     <div class="movies">
-      <h3 class="heading">Example-1</h3>
+      <h3 class="heading">Example-1 action</h3>
       <p class="price" data-category="action">Rs. 100</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-2</h3>
+      <h3 class="heading">Example-2 action</h3>
       <p class="price" data-category="action">Rs 200</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-3</h3>
+      <h3 class="heading">Example-3 action</h3>
       <p class="price" data-category="action">Rs. 150</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-4</h3>
+      <h3 class="heading">Example-4 romance</h3>
       <p class="price" data-category="romance">Rs 200</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-5</h3>
+      <h3 class="heading">Example-5 romance</h3>
       <p class="price" data-category="romance">Rs. 150</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-6</h3>
+      <h3 class="heading">Example-6 romance</h3>
       <p class="price" data-category="romance">Rs. 150</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-7</h3>
+      <h3 class="heading">Example-7 action</h3>
       <p class="price" data-category="action">Rs 200</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-8</h3>
+      <h3 class="heading">Example-8 comedy</h3>
       <p class="price" data-category="comedy">Rs. 100</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-9</h3>
+      <h3 class="heading">Example-9 romance</h3>
       <p class="price" data-category="romance">Rs. 100</p>
     </div>
     <div class="movies">
-      <h3 class="heading">Example-10</h3>
+      <h3 class="heading">Example-10 comedy</h3>
       <p class="price" data-category="comedy">Rs 200</p>
     </div>
     <script>
       // Q Make the filter work
+
+      let filter = document.querySelector('select')
+
+
+      filter.addEventListener('change' , function(){
+        let filterValue = filter.value 
+        
+
+        let allTickets = document.querySelectorAll('p')
+
+        if(filterValue==='none'){
+          for(let i=0 ; i<allTickets.length ; i++){
+            allTickets[i].parentElement.style.display = 'block'
+          }
+        }
+        else{
+          for(let i=0 ; i<allTickets.length ; i++){
+            if(allTickets[i].getAttribute('data-category')!=filterValue){
+              allTickets[i].parentElement.style.display = 'none'
+            }else{
+              allTickets[i].parentElement.style.display='block'
+            }
+          }
+        }
+      })
+
+
+
 
     
     </script>
