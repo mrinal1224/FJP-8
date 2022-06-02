@@ -32,6 +32,21 @@
 
       //   Solution :
 
+      let inputField = document.querySelector('#pass')
+
+      let warningText = document.querySelector('p')
+
+
+      inputField.addEventListener('keypress' , function(e){
+        if (e.getModifierState('CapsLock')){
+             warningText.style.display='block'
+             e.preventDefault()
+        }
+      })
+
+
+
+
       
   
     </script>
