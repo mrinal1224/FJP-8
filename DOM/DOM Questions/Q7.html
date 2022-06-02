@@ -36,12 +36,32 @@
 
       let warningText = document.querySelector('p')
 
+      let isShift = false
+
 
       inputField.addEventListener('keypress' , function(e){
         if (e.getModifierState('CapsLock')){
              warningText.style.display='block'
              e.preventDefault()
         }
+        else{
+          warningText.style.display='none'
+        }
+
+        if(!isShift) e.preventDefault()
+      })
+
+
+      document.addEventListener('keydown' , function(e){
+         if(e.key ==='Shift'){
+           isShift =true
+         }
+      })
+
+      document.addEventListener('keyup' , function(e){
+         if(e.key ==='Shift'){
+           isShift =false
+         }
       })
 
 
