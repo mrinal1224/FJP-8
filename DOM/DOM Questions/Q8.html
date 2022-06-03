@@ -20,11 +20,11 @@
          document.querySelector('#doubleHolder').addEventListener('click' , function(e){
                             if(e.target.classList.contains('double')){
                               let btn = document.createElement('button');
-                              btn.setAttribute('class' , 'double')
+                              btn.setAttribute('class' , 'newClass')
                               btn.innerHTML = 'firstButton'
 
                               let btn2 = document.createElement('button');
-                              btn2.setAttribute('class' , 'double')
+                              btn2.setAttribute('class' , 'newClass')
                               btn2.innerHTML = 'SecondButton'
 
                               e.currentTarget.appendChild(btn)
