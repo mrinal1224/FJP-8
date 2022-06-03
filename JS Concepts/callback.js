@@ -16,7 +16,8 @@ printFirstName("Neeraj", function printLastName(lastName) {
 
 function printHello(cb) {
   console.log("Hello");
-  cb();
+  cb()
+ 
 }
 
 function printBye() {
