@@ -26,6 +26,7 @@ function cb1(err, data) {
     console.log(err);
   } else {
     console.log("This is file data-> " + data);
+   
   }
 }
 
@@ -36,6 +37,7 @@ function cb2(err, data) {
     console.log(err);
   } else {
     console.log("This is file data-> " + data);
+    
   }
 }
 
