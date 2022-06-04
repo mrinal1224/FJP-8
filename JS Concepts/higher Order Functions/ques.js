@@ -10,3 +10,23 @@ let arr = [
    ]
 
 // Age of all the ladies
+
+
+let ladiesArr = arr.filter(function(obj){
+       if(obj.gender=='F'){
+              return true
+       }
+       else{
+              return false
+       }
+}).map(function(n){
+       return n.age
+})
+
+console.log(ladiesArr)
+
+
+
+
+
+ 
