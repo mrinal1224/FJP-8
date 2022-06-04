@@ -13,15 +13,11 @@ let arr = [
 
 
 let ladiesArr = arr.filter(function(obj){
-       if(obj.gender=='F'){
-              return true
-       }
-       else{
-              return false
-       }
+     return obj.gender=='F'
 }).map(function(n){
        return n.age
 })
+
 
 console.log(ladiesArr)
 
