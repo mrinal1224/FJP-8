@@ -19,7 +19,7 @@ const fs = require("fs");
 
 console.log("Before");
 
-fs.readFile("f1.txt", cb1);
+fs.readFile("f3.txt", cb1);
 
 function cb1(err, data) {
   if (err) {
