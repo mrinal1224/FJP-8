@@ -9,7 +9,7 @@ body {
 
 .toolbox-cont {
   height: 5rem;
-  background-color: grey;
+  background-color: #4b4b4b;
   display: flex;
   align-items: center;
 }
@@ -21,7 +21,7 @@ body {
 .toolbox-priority-cont {
   height: 3.5rem;
   width: 18rem;
-  background-color: yellow;
+  background-color:  #3d3d3d;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
@@ -31,7 +31,7 @@ body {
 .action-btn-cont{
        height:3.5rem ;
        width:8rem ;
-       background-color: yellow;
+       background-color: #3d3d3d;
        display:flex
 }
 
@@ -41,6 +41,7 @@ body {
        width: 50%;
        font-size: 2rem;
        align-items: center;
+       color: white;
 
 }
 
@@ -63,4 +64,27 @@ body {
 
 .black {
   background-color: black;
+}
+
+
+.modal-cont{
+  height: 50vh;
+  width: 45vw;
+  background: lightblue;
+  position: absolute;
+  top : 30%;
+  left : 25%;
+
+}
+
+
+.textArea-cont{
+  height: 100%;
+  width: 75%;
+  background-color: #dfe4ea;
+  outline: none;
+  border: none;
+  resize : none;
+  font-size: 2rem;
+  padding: 2rem;
 }
