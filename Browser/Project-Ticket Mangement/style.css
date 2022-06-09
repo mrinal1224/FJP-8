@@ -74,6 +74,7 @@ body {
   position: absolute;
   top : 30%;
   left : 25%;
+  display: flex;
 
 }
 
@@ -87,4 +88,20 @@ body {
   resize : none;
   font-size: 2rem;
   padding: 2rem;
+}
+
+
+.priority-colors-container{
+  height: 100%;
+  width:25% ;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #4b4b4b
+}
+
+.priority-color{
+  height: 3rem;
+  width: 5rem;
 }
