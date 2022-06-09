@@ -27,6 +27,23 @@ body {
   justify-content: space-evenly;
 }
 
+
+.action-btn-cont{
+       height:3.5rem ;
+       width:8rem ;
+       background-color: yellow;
+       display:flex
+}
+
+.action-btn-cont>*{
+       display: flex;
+       justify-content: center;
+       width: 50%;
+       font-size: 2rem;
+       align-items: center;
+
+}
+
 .color {
   height: 1.5rem;
   width: 3rem;
