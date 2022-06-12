@@ -133,3 +133,27 @@ body {
   background-color: yellow;
   height: 2rem;
 }
+
+.ticket-lock{
+  display: flex;
+  font-size: 1.5rem;
+  justify-content: flex-end;
+  margin-top: 90px;
+  margin-right: 5px;
+
+}
+
+.add-btn:hover{
+  background-color: #4BB543;
+}
+
+
+.remove-btn:hover{
+  background-color: #f70d1a;
+}
+
+
+.toolbox-priority-cont>*:hover{
+        background-color: #485460;
+}
+
