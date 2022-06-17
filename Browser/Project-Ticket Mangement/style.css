@@ -50,15 +50,15 @@ body {
   width: 3rem;
 }
 
-.light_pink {
+.lightpink {
   background-color: lightpink;
 }
 
-.light_green {
+.lightgreen {
   background-color: lightgreen;
 }
 
-.light_blue {
+.lightblue {
   background-color: lightblue;
 }
 
@@ -125,7 +125,6 @@ body {
 
 .ticket-color{
   height: 1rem;
-  background-color: black;
 }
 
 
@@ -155,5 +154,10 @@ body {
 
 .toolbox-priority-cont>*:hover{
         background-color: #485460;
+}
+
+
+.active{
+  border: 5px solid coral;
 }
 
