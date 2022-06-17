@@ -5,16 +5,16 @@ let taskArea = document.querySelector(".textArea-cont");
 
 let removeBtn = document.querySelector(".remove-btn");
 
-let colors = ['lightpink' , 'lightgreen' , 'lightblue' , 'black']
-let allPriorityColors = document.querySelectorAll('.priority-color')
+let colors = ["lightpink", "lightgreen", "lightblue", "black"];
+let allPriorityColors = document.querySelectorAll(".priority-color");
 
-let modalPriorityColor = colors[colors.length-1]
+let modalPriorityColor = colors[colors.length - 1];
 
 let addFlag = false;
 let removeFlag = false;
 
-let lockClass = 'fa-lock'
-let unlockClass = 'fa-lock-open'
+let lockClass = "fa-lock";
+let unlockClass = "fa-lock-open";
 
 addBtn.addEventListener("click", function () {
   // display The Modal
@@ -28,32 +28,31 @@ addBtn.addEventListener("click", function () {
   }
 });
 
-
 //Select the Priorty Color of The task
 
-allPriorityColors.forEach(function (colorElem){
-  colorElem.addEventListener('click' ,  function(e){
-      allPriorityColors.forEach(function(priorityColorElem){
-        priorityColorElem.classList.remove('active')
-      })
-      colorElem.classList.add('active')
+allPriorityColors.forEach(function (colorElem) {
+  colorElem.addEventListener("click", function (e) {
+    allPriorityColors.forEach(function (priorityColorElem) {
+      priorityColorElem.classList.remove("active");
+    });
+    colorElem.classList.add("active");
 
-      modalPriorityColor = colorElem.classList[0] // lightpink
-  })
-})
+    modalPriorityColor = colorElem.classList[0]; // lightpink
+  });
+});
 
 modalCont.addEventListener("keydown", function (e) {
   let key = e.key;
 
   if (key == "Shift") {
-    createTicket(taskArea.value , modalPriorityColor);
+    createTicket(taskArea.value, modalPriorityColor);
     modalCont.style.display = "none";
     addFlag = false;
     taskArea.value = "";
   }
 });
 
-function createTicket(ticketTask , ticketColor) {
+function createTicket(ticketTask, ticketColor) {
   let id = shortid();
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
@@ -69,7 +68,9 @@ function createTicket(ticketTask , ticketColor) {
 
   handleRemoval(ticketCont);
 
-  handleLock(ticketCont)
+  handleLock(ticketCont);
+
+  handleColor(ticketCont)
 }
 
 removeBtn.addEventListener("click", function () {
@@ -89,46 +90,46 @@ function handleRemoval(ticket) {
   });
 }
 
+function handleLock(ticket) {
+  let ticketLockElem = ticket.querySelector(".ticket-lock");
 
+  let ticketLockIcon = ticketLockElem.children[0];
 
-function handleLock(ticket){
-    let ticketLockElem = ticket.querySelector('.ticket-lock')
+  let ticketTaskArea = ticket.querySelector(".task-area");
 
-    let ticketLockIcon = ticketLockElem.children[0]
-
-    let ticketTaskArea = ticket.querySelector('.task-area')
-
-    ticketLockIcon.addEventListener('click' , function(){
-      if(ticketLockIcon.classList.contains(lockClass)){
-        ticketLockIcon.classList.remove(lockClass)
-        ticketLockIcon.classList.add(unlockClass)
-        ticketTaskArea.setAttribute('contenteditable' , 'true')
-      }
-      else{
-        ticketLockIcon.classList.remove(unlockClass)
-        ticketLockIcon.classList.add(lockClass)
-        ticketTaskArea.setAttribute('contenteditable' , 'false')
-      }
-    })
-
-
-
-
-
-
-
-
+  ticketLockIcon.addEventListener("click", function () {
+    if (ticketLockIcon.classList.contains(lockClass)) {
+      ticketLockIcon.classList.remove(lockClass);
+      ticketLockIcon.classList.add(unlockClass);
+      ticketTaskArea.setAttribute("contenteditable", "true");
+    } else {
+      ticketLockIcon.classList.remove(unlockClass);
+      ticketLockIcon.classList.add(lockClass);
+      ticketTaskArea.setAttribute("contenteditable", "false");
+    }
+  });
 }
 
 
 
+function handleColor(ticket){
+    let ticketColorBand = ticket.querySelector('.ticket-color')
 
 
+    ticketColorBand.addEventListener('click' , function(){
+      let currentTicketColor = ticketColorBand.classList[1]
 
+      let currentColorIdx = colors.findIndex(function(color){
+        return currentTicketColor===color
+      })
 
+      currentColorIdx++
 
+      let newTicketColorIdx = currentColorIdx % colors.length
 
+      let newTicketColor = colors[newTicketColorIdx] 
 
-
-
-
+      ticketColorBand.classList.remove(currentTicketColor)
+      ticketColorBand.classList.add(newTicketColor)
+    })
+}
