@@ -13,6 +13,9 @@ let modalPriorityColor = colors[colors.length-1]
 let addFlag = false;
 let removeFlag = false;
 
+let lockClass = 'fa-lock'
+let unlockClass = 'fa-lock-open'
+
 addBtn.addEventListener("click", function () {
   // display The Modal
 
@@ -65,6 +68,8 @@ function createTicket(ticketTask , ticketColor) {
   mainCont.append(ticketCont);
 
   handleRemoval(ticketCont);
+
+  handleLock(ticketCont)
 }
 
 removeBtn.addEventListener("click", function () {
@@ -83,3 +88,47 @@ function handleRemoval(ticket) {
     ticket.remove(); // ui Removal
   });
 }
+
+
+
+function handleLock(ticket){
+    let ticketLockElem = ticket.querySelector('.ticket-lock')
+
+    let ticketLockIcon = ticketLockElem.children[0]
+
+    let ticketTaskArea = ticket.querySelector('.task-area')
+
+    ticketLockIcon.addEventListener('click' , function(){
+      if(ticketLockIcon.classList.contains(lockClass)){
+        ticketLockIcon.classList.remove(lockClass)
+        ticketLockIcon.classList.add(unlockClass)
+        ticketTaskArea.setAttribute('contenteditable' , 'true')
+      }
+      else{
+        ticketLockIcon.classList.remove(unlockClass)
+        ticketLockIcon.classList.add(lockClass)
+        ticketTaskArea.setAttribute('contenteditable' , 'false')
+      }
+    })
+
+
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
