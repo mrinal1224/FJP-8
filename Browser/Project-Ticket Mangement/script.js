@@ -47,9 +47,23 @@ for (let i = 0; i < toolBoxColors.length; i++) {
     }
 
     filteredTickets.forEach(function (filteredObj) {
-      createTicket(filteredObj.ticketTask, filteredObj.ticketColor);
+      createTicket(filteredObj.ticketTask, filteredObj.ticketColor , filteredObj.ticketID);
     });
   });
+
+
+  toolBoxColors[i].addEventListener('dblclick' , function(){
+    let allTickets = document.querySelectorAll(".ticket-cont");
+
+    for (let i = 0; i < allTickets.length; i++) {
+      allTickets[i].remove();
+    }
+
+    ticketsArr.forEach(function(ticketObj){
+      createTicket(ticketObj.ticketTask , ticketObj.ticketColor , ticketObj.ticketID)
+    })
+
+  })
 }
 
 //Select the Priorty Color of The task
@@ -76,8 +90,8 @@ modalCont.addEventListener("keydown", function (e) {
   }
 });
 
-function createTicket(ticketTask, ticketColor) {
-  let id = shortid();
+function createTicket(ticketTask, ticketColor , ticketID) {
+  let id = ticketID || shortid();
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
 
@@ -96,8 +110,11 @@ function createTicket(ticketTask, ticketColor) {
 
   handleColor(ticketCont);
 
-  ticketsArr.push({ ticketTask, ticketColor });
+  if(!ticketID){
+    ticketsArr.push({ ticketTask, ticketColor , ticketID:id });
+  }
 
+ 
   console.log(ticketsArr);
 }
 
