@@ -122,6 +122,7 @@ removeBtn.addEventListener("click", function () {
   removeFlag = !removeFlag;
 
   if (removeFlag === true) {
+    alert('delete button has been activated')
     removeBtn.style.color = "red";
   } else {
     removeBtn.style.color = "white";
