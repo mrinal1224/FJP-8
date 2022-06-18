@@ -13,8 +13,12 @@ let modalPriorityColor = colors[colors.length - 1];
 let addFlag = false;
 let removeFlag = false;
 
+let toolBoxColors = document.querySelectorAll(".color");
+
 let lockClass = "fa-lock";
 let unlockClass = "fa-lock-open";
+
+let ticketsArr = [];
 
 addBtn.addEventListener("click", function () {
   // display The Modal
@@ -27,6 +31,26 @@ addBtn.addEventListener("click", function () {
     modalCont.style.display = "none";
   }
 });
+
+for (let i = 0; i < toolBoxColors.length; i++) {
+  toolBoxColors[i].addEventListener("click", function () {
+    let selectedToolBoxColor = toolBoxColors[i].classList[0];
+
+    let filteredTickets = ticketsArr.filter(function (ticketObj) {
+      return selectedToolBoxColor === ticketObj.ticketColor;
+    });
+
+    let allTickets = document.querySelectorAll(".ticket-cont");
+
+    for (let i = 0; i < allTickets.length; i++) {
+      allTickets[i].remove();
+    }
+
+    filteredTickets.forEach(function (filteredObj) {
+      createTicket(filteredObj.ticketTask, filteredObj.ticketColor);
+    });
+  });
+}
 
 //Select the Priorty Color of The task
 
@@ -70,7 +94,11 @@ function createTicket(ticketTask, ticketColor) {
 
   handleLock(ticketCont);
 
-  handleColor(ticketCont)
+  handleColor(ticketCont);
+
+  ticketsArr.push({ ticketTask, ticketColor });
+
+  console.log(ticketsArr);
 }
 
 removeBtn.addEventListener("click", function () {
@@ -110,26 +138,23 @@ function handleLock(ticket) {
   });
 }
 
+function handleColor(ticket) {
+  let ticketColorBand = ticket.querySelector(".ticket-color");
 
+  ticketColorBand.addEventListener("click", function () {
+    let currentTicketColor = ticketColorBand.classList[1];
 
-function handleColor(ticket){
-    let ticketColorBand = ticket.querySelector('.ticket-color')
+    let currentColorIdx = colors.findIndex(function (color) {
+      return currentTicketColor === color;
+    });
 
+    currentColorIdx++;
 
-    ticketColorBand.addEventListener('click' , function(){
-      let currentTicketColor = ticketColorBand.classList[1]
+    let newTicketColorIdx = currentColorIdx % colors.length;
 
-      let currentColorIdx = colors.findIndex(function(color){
-        return currentTicketColor===color
-      })
+    let newTicketColor = colors[newTicketColorIdx];
 
-      currentColorIdx++
-
-      let newTicketColorIdx = currentColorIdx % colors.length
-
-      let newTicketColor = colors[newTicketColorIdx] 
-
-      ticketColorBand.classList.remove(currentTicketColor)
-      ticketColorBand.classList.add(newTicketColor)
-    })
+    ticketColorBand.classList.remove(currentTicketColor);
+    ticketColorBand.classList.add(newTicketColor);
+  });
 }
