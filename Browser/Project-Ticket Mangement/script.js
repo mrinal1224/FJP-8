@@ -20,6 +20,15 @@ let unlockClass = "fa-lock-open";
 
 let ticketsArr = [];
 
+
+
+if(localStorage.getItem('tickets')){
+  ticketsArr = JSON.parse(localStorage.getItem('tickets'))
+  ticketsArr.forEach(function(ticket){
+    createTicket(ticket.ticketTask , ticket.ticketColor , ticket.ticketID)
+  })
+}
+
 addBtn.addEventListener("click", function () {
   // display The Modal
 
@@ -47,23 +56,29 @@ for (let i = 0; i < toolBoxColors.length; i++) {
     }
 
     filteredTickets.forEach(function (filteredObj) {
-      createTicket(filteredObj.ticketTask, filteredObj.ticketColor , filteredObj.ticketID);
+      createTicket(
+        filteredObj.ticketTask,
+        filteredObj.ticketColor,
+        filteredObj.ticketID
+      );
     });
   });
 
-
-  toolBoxColors[i].addEventListener('dblclick' , function(){
+  toolBoxColors[i].addEventListener("dblclick", function () {
     let allTickets = document.querySelectorAll(".ticket-cont");
 
     for (let i = 0; i < allTickets.length; i++) {
       allTickets[i].remove();
     }
 
-    ticketsArr.forEach(function(ticketObj){
-      createTicket(ticketObj.ticketTask , ticketObj.ticketColor , ticketObj.ticketID)
-    })
-
-  })
+    ticketsArr.forEach(function (ticketObj) {
+      createTicket(
+        ticketObj.ticketTask,
+        ticketObj.ticketColor,
+        ticketObj.ticketID
+      );
+    });
+  });
 }
 
 //Select the Priorty Color of The task
@@ -90,7 +105,7 @@ modalCont.addEventListener("keydown", function (e) {
   }
 });
 
-function createTicket(ticketTask, ticketColor , ticketID) {
+function createTicket(ticketTask, ticketColor, ticketID) {
   let id = ticketID || shortid();
   let ticketCont = document.createElement("div");
   ticketCont.setAttribute("class", "ticket-cont");
@@ -106,15 +121,15 @@ function createTicket(ticketTask, ticketColor , ticketID) {
 
   handleRemoval(ticketCont);
 
-  handleLock(ticketCont);
+  handleLock(ticketCont , id );
 
   handleColor(ticketCont);
 
-  if(!ticketID){
-    ticketsArr.push({ ticketTask, ticketColor , ticketID:id });
+  if (!ticketID) {
+    ticketsArr.push({ ticketTask, ticketColor, ticketID: id });
+    localStorage.setItem('tickets' , JSON.stringify(ticketsArr))
   }
 
- 
   console.log(ticketsArr);
 }
 
@@ -122,7 +137,7 @@ removeBtn.addEventListener("click", function () {
   removeFlag = !removeFlag;
 
   if (removeFlag === true) {
-    alert('delete button has been activated')
+    alert("delete button has been activated");
     removeBtn.style.color = "red";
   } else {
     removeBtn.style.color = "white";
@@ -136,14 +151,16 @@ function handleRemoval(ticket) {
   });
 }
 
-function handleLock(ticket) {
+function handleLock(ticket , id) {
   let ticketLockElem = ticket.querySelector(".ticket-lock");
 
   let ticketLockIcon = ticketLockElem.children[0];
 
   let ticketTaskArea = ticket.querySelector(".task-area");
 
+
   ticketLockIcon.addEventListener("click", function () {
+    let ticketIdx = getTicketIdx(id)
     if (ticketLockIcon.classList.contains(lockClass)) {
       ticketLockIcon.classList.remove(lockClass);
       ticketLockIcon.classList.add(unlockClass);
@@ -153,6 +170,10 @@ function handleLock(ticket) {
       ticketLockIcon.classList.add(lockClass);
       ticketTaskArea.setAttribute("contenteditable", "false");
     }
+
+
+    ticketsArr[ticketIdx].ticketTask=ticketTaskArea.innerText
+    localStorage.setItem('tickets' , JSON.stringify(ticketsArr))
   });
 }
 
@@ -175,4 +196,15 @@ function handleColor(ticket) {
     ticketColorBand.classList.remove(currentTicketColor);
     ticketColorBand.classList.add(newTicketColor);
   });
+}
+
+
+function getTicketIdx(id){
+  let ticketIdx = ticketsArr.findIndex(function(ticketObj){
+    return ticketObj.ticketID === id
+  })
+
+  console.log(ticketIdx)
+
+  return ticketIdx
 }
