@@ -123,7 +123,7 @@ function createTicket(ticketTask, ticketColor, ticketID) {
 
   handleLock(ticketCont , id );
 
-  handleColor(ticketCont);
+  handleColor(ticketCont , id);
 
   if (!ticketID) {
     ticketsArr.push({ ticketTask, ticketColor, ticketID: id });
@@ -177,11 +177,13 @@ function handleLock(ticket , id) {
   });
 }
 
-function handleColor(ticket) {
+function handleColor(ticket , id) {
   let ticketColorBand = ticket.querySelector(".ticket-color");
 
   ticketColorBand.addEventListener("click", function () {
     let currentTicketColor = ticketColorBand.classList[1];
+
+    let ticketIdx = getTicketIdx(id)
 
     let currentColorIdx = colors.findIndex(function (color) {
       return currentTicketColor === color;
@@ -195,6 +197,10 @@ function handleColor(ticket) {
 
     ticketColorBand.classList.remove(currentTicketColor);
     ticketColorBand.classList.add(newTicketColor);
+
+
+    ticketsArr[ticketIdx].ticketColor = newTicketColor
+    localStorage.setItem('tickets' , JSON.stringify(ticketsArr))
   });
 }
 
