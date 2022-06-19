@@ -1,11 +1,6 @@
-let obj={
-       name : 'Adam',
-       age : 23,
-       gender : 'M'
-}
+let arr = [1 , 2, 3, 4 , 5]
 
 
+arr.splice(2 , 3)
 
-console.log(obj.name)
-
-console.log(obj['age'])
+console.log(arr)

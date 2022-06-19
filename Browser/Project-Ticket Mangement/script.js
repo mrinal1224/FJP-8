@@ -119,7 +119,7 @@ function createTicket(ticketTask, ticketColor, ticketID) {
 
   mainCont.append(ticketCont);
 
-  handleRemoval(ticketCont);
+  handleRemoval(ticketCont , id);
 
   handleLock(ticketCont , id );
 
@@ -144,10 +144,26 @@ removeBtn.addEventListener("click", function () {
   }
 });
 
-function handleRemoval(ticket) {
+function handleRemoval(ticket , id) {
   ticket.addEventListener("click", function () {
     if (!removeFlag) return;
+
+    let idx = getTicketIdx(id)
     ticket.remove(); // ui Removal
+
+    let deletedElement = ticketsArr.splice(idx , 1)
+
+    console.log(deletedElement)
+
+
+    let strticketArray = JSON.stringify(ticketsArr)
+
+
+    localStorage.setItem('tickets' , strticketArray)
+
+    ticket.remove(); // ui Removal
+
+
   });
 }
 
