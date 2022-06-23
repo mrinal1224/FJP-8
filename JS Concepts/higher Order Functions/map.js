@@ -16,7 +16,7 @@
 // let arr = [2, 5, 9, 10, 11];
 
 // let squaredArr = arr.map(function (n) {
-//   return n * 3;
+//   return n * n;
 // });
 
 // console.log(squaredArr);
