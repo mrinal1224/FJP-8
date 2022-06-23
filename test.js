@@ -1,6 +1,5 @@
-let arr = [1 , 2, 3, 4 , 5]
+
+ a = 10
 
 
-arr.splice(2 , 3)
-
-console.log(arr)
+console.log(a)
