@@ -1,6 +1,6 @@
-'use strict'
+
 //1
-console.log(this)
+// console.log(this)
 
 
 
