@@ -9,26 +9,21 @@ let firstPerson = {
     },
   },
 
-  test : {
-       value1 : 2
-  }
+  test: {
+    value1: 2,
+  },
 };
 
-let secondPerson ={...firstPerson} // shallow copy 
+let secondPerson = { ...firstPerson }; // shallow copy
 
 // firstPerson.address.country = "USA";
 
 // firstPerson.address.city.cityName='Mumbai'
 
+let thirdPerson = JSON.parse(JSON.stringify(firstPerson)); // deep copy
 
-
-
-
-let thirdPerson = JSON.parse(JSON.stringify(firstPerson)) // deep copy
-
-firstPerson.address.city.pincode = '56789'
-
+firstPerson.address.city.pincode = "56789";
 
 console.log(firstPerson);
 console.log(secondPerson);
-console.log(thirdPerson)
+console.log(thirdPerson);
