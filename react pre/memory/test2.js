@@ -1,14 +1,20 @@
 let firstPerson = {
-       name :'Adam',
-       age : 23
-}
+  name: "Adam",
+  age: 23,
+  address: {
+    country: "India",
+    city: {
+      cityName: "Delhi",
+      pincode: 123456,
+    },
+  },
+};
 
+let secondPerson = { ...firstPerson , address : {...firstPerson.address , city:{...firstPerson.address.city}} };
 
-let secondPerson = firstPerson
+firstPerson.address.country = "USA";
 
+firstPerson.address.city.cityName='Mumbai'
 
-firstPerson.name = 'Steve'
-
-
-console.log(firstPerson)
-console.log(secondPerson)
+console.log(firstPerson);
+console.log(secondPerson);
