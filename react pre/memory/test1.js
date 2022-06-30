@@ -1,9 +1,16 @@
-let firstPerson = "Adam";
+function greet(){
+       console.log('Hello')
+}
 
-let secondPerson = firstPerson;
 
-firstPerson = "steve";
+greet()
 
-console.log(firstPerson);
 
-console.log(secondPerson);
+let wish =(greeting)=>{
+       console.log(greeting)
+}
+
+
+wish('Good Evening')
+
+
