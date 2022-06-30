@@ -14,29 +14,53 @@
       crossorigin
       src="https://unpkg.com/react-dom@18/umd/react-dom.development.js"
     ></script>
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-        <div id="root"></div>
+    <div id="root"></div>
 
-       <script>
-              // let ele = document.createElement('h1')
-              // ele.innerText = 'Hello'
+    <script type="text/babel">
+      // let ele = document.createElement('h1')
+      // ele.innerText = 'Hello'
 
-              // let root = document.getElementById('root')
+      // let root = document.getElementById('root')
 
-              // root.appendChild(ele)
+      // root.appendChild(ele)
 
-              //React
+      //React
 
-              let ele = React.createElement('h1' , {
-                     children : ['Hello' , ' Bye']
-              })
+      // let ele = React.createElement('h1' , {
+      //        children : 'Hello'
+      // })
 
+      // ReactDOM.render(ele , document.getElementById('root'))
 
-              ReactDOM.render(ele , document.getElementById('root'))
+      function Child1() {
+        return (
+          <div>
+            <h1> Hello My name is Mrinal </h1>
+          </div>
+        );
+      }
 
+      function Child2() {
+        return (
+          <div>
+            <h1> Hello My name is Aman </h1>
+          </div>
+        );
+      }
 
+      function Parent() {
+        return (
+          <>
+            <Child1 />
+            <Child2 />
+          </>
+        );
+      }
 
-       </script>
+      ReactDOM.render(<Parent />, document.getElementById("root"));
+    </script>
   </body>
 </html>
