@@ -17,7 +17,9 @@
     <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
   </head>
   <body>
-    <div id="root"></div>
+    <div id="root">
+   
+    </div>
 
     <script type="text/babel">
       // let ele = document.createElement('h1')
@@ -35,18 +37,21 @@
 
       // ReactDOM.render(ele , document.getElementById('root'))
 
-      function Child1() {
+      function Child1({name , age , marks}) {
         return (
           <div>
-            <h1> Hello My name is Mrinal </h1>
+            <h1> Hello My name is {name} </h1>
+            <h4> Age is {age} </h4>
+            <h4> Total Marks Obtained- {marks} </h4>
+
           </div>
         );
       }
 
-      function Child2() {
+      function Child2({color='black'}) {
         return (
           <div>
-            <h1> Hello My name is Aman </h1>
+            <h1> I saw a {color} cat </h1>
           </div>
         );
       }
@@ -54,13 +59,16 @@
       function Parent() {
         return (
           <>
-            <Child1 />
-            <Child2 />
+            <Child1 name='Mrinal' age='20' marks='75' />
+            <Child1 name='Aman' age='21' marks='80' />
+            <Child2 color='White'/>
           </>
         );
       }
 
       ReactDOM.render(<Parent />, document.getElementById("root"));
+
+   
     </script>
   </body>
 </html>
