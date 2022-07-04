@@ -1,0 +1,36 @@
+
+
+
+
+
+.banner-card{
+    width: 100vw;
+    margin-top:2vh ;
+    height: 70vh;
+    position: relative;
+}
+
+
+.banner-img{
+  height: 70vh;
+  width: 100%;
+}
+
+
+.banner-title{
+ position: absolute;
+ font-size: 50px;
+ top : 45vh;
+ color: white;
+ left: 5vw;
+}
+
+
+.banner-text{
+  position: absolute;
+  top : 55vh;
+  color : white;
+  font-size:20px ;
+  left: 5vw;
+  height: 4.5vw;
+}
