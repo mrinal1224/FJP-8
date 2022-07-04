@@ -1,8 +1,10 @@
+import Navbar from "./components/Navbar";
+
 function App() {
   return (
     
    <div>
-    <button type="button" class="btn btn-primary">Primary</button>
+     <Navbar/>
    </div>
   );
 }
