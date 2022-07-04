@@ -1,7 +1,13 @@
 import React, { Component } from "react";
 
+
+import {movies} from '../movieData'
+
 export class MovieList extends Component {
   render() {
+
+      let movieData = movies.results
+      console.log(movieData)
     return (
       <>
       
@@ -13,7 +19,11 @@ export class MovieList extends Component {
 
 
         <div className="movies-list">
-              
+              <ul>
+                     {movieData.map((movie)=>(
+                            <li><p>{movie.original_title}</p></li>
+                     ))}
+              </ul>
         </div>
       </>
     );
