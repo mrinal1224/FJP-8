@@ -3,6 +3,13 @@ import React, { Component } from "react";
 import { movies } from "../movieData";
 
 export class MovieList extends Component {
+  constructor() {
+    super();
+
+    this.state = {
+      hover: "",
+    };
+  }
   render() {
     let movieData = movies.results;
     console.log(movieData);
@@ -16,7 +23,11 @@ export class MovieList extends Component {
 
         <div className="movies-list">
           {movieData.map((movieElem) => (
-            <div className="card movie-card">
+            <div
+              className="card movie-card"
+              onMouseEnter={() => this.setState({ hover: movieElem.id })}
+              onMouseLeave={() => this.setState({ hover: "" })}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/original${movieElem.backdrop_path}`}
                 className="card-img-top movie-img"
@@ -25,14 +36,18 @@ export class MovieList extends Component {
               />
 
               <h5 class="card-title movie-title">{movieElem.original_title}</h5>
-              <a href="#" class="btn btn-primary movies-button">
-                Add to Favourites
-              </a>
+
+              {this.state.hover==movieElem.id &&
+               <a href="#" class="btn btn-primary movies-button">
+               Add to Favourites
+             </a>
+              }
+             
             </div>
           ))}
         </div>
 
-        <div style={{display : 'flex' , justifyContent : 'center'}}>
+        <div style={{ display: "flex", justifyContent: "center" }}>
           <nav aria-label="...">
             <ul class="pagination">
               <li class="page-item disabled">
