@@ -35,3 +35,18 @@
   left: 5vw;
   height: 4.5vw;
 }
+
+
+.movies-list{
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  padding: 1rem;
+}
+
+
+
+.movie-card{
+  margin: 1rem;
+  width: 20vw;
+}
