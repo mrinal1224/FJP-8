@@ -2,6 +2,9 @@ import React, { Component } from "react";
 
 import { movies } from "../movieData";
 
+
+import axios from 'axios'
+
 export class MovieList extends Component {
   constructor() {
     super();
@@ -10,9 +13,14 @@ export class MovieList extends Component {
       hover: "",
     };
   }
+
+  async componentDidMount(){
+    const res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=1')
+    console.log(res.data)
+  }
   render() {
     let movieData = movies.results;
-    console.log(movieData);
+  
     return (
       <>
         <div>
