@@ -9,12 +9,15 @@ export class MovieList extends Component {
     this.state = {
       hover: "",
       movies: [],
+      currPage :1,
+      parr : [1]
     };
   }
 
+
   async componentDidMount() {
     const res = await axios.get(
-      "https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=1"
+      `https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=${this.state.currPage}`
     );
     // console.log(res.data)
 
@@ -24,6 +27,31 @@ export class MovieList extends Component {
       movies: [...movieDataFromApi.results],
     });
   }
+
+
+  changeMovies = async()=>{
+    const res = await axios.get(
+      `https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=${this.state.currPage}`
+    );
+    // console.log(res.data)
+
+    let movieDataFromApi = res.data;
+    
+
+    this.setState({
+      movies: [...movieDataFromApi.results],
+    });
+  }
+
+
+  IncrementPage = ()=>{
+      this.setState({
+        currPage : this.state.currPage+1
+      } , this.changeMovies)
+  }
+
+
+
   render() {
     return (
       <>
@@ -56,6 +84,7 @@ export class MovieList extends Component {
               )}
             </div>
           ))}
+          <button onClick={this.IncrementPage}>Increment Page</button>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -64,21 +93,16 @@ export class MovieList extends Component {
               <li class="page-item disabled">
                 <a class="page-link">Previous</a>
               </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  1
-                </a>
-              </li>
-              <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">
-                  2
-                </a>
-              </li>
-              <li class="page-item">
-                <a class="page-link" href="#">
-                  3
-                </a>
-              </li>
+
+              {this.state.parr.map((value)=>{
+                  <li class="page-item">
+                  <a class="page-link" href="#">
+                    {value}
+                  </a>
+                </li>
+              })}
+
+               
               <li class="page-item">
                 <a class="page-link" href="#">
                   Next
