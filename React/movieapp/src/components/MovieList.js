@@ -1,9 +1,6 @@
 import React, { Component } from "react";
 
-import { movies } from "../movieData";
-
-
-import axios from 'axios'
+import axios from "axios";
 
 export class MovieList extends Component {
   constructor() {
@@ -11,16 +8,23 @@ export class MovieList extends Component {
 
     this.state = {
       hover: "",
+      movies: [],
     };
   }
 
-  async componentDidMount(){
-    const res = await axios.get('https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=1')
-    console.log(res.data)
+  async componentDidMount() {
+    const res = await axios.get(
+      "https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=3"
+    );
+    // console.log(res.data)
+
+    let movieDataFromApi = res.data;
+
+    this.setState({
+      movies: [...movieDataFromApi.results],
+    });
   }
   render() {
-    let movieData = movies.results;
-  
     return (
       <>
         <div>
@@ -30,7 +34,7 @@ export class MovieList extends Component {
         </div>
 
         <div className="movies-list">
-          {movieData.map((movieElem) => (
+          {this.state.movies.map((movieElem) => (
             <div
               className="card movie-card"
               onMouseEnter={() => this.setState({ hover: movieElem.id })}
@@ -45,12 +49,11 @@ export class MovieList extends Component {
 
               <h5 class="card-title movie-title">{movieElem.original_title}</h5>
 
-              {this.state.hover==movieElem.id &&
-               <a href="#" class="btn btn-primary movies-button">
-               Add to Favourites
-             </a>
-              }
-             
+              {this.state.hover == movieElem.id && (
+                <a href="#" class="btn btn-primary movies-button">
+                  Add to Favourites
+                </a>
+              )}
             </div>
           ))}
         </div>
