@@ -22,7 +22,10 @@ readFilePromise.then(function(data){
        console.log('This is file Data-> ' + data)
 })
 
-// Rejected
+// Rejected state
 readFilePromise.catch(function(err){
        console.log(err)
 })
+
+
+
