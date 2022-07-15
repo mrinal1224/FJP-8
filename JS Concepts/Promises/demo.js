@@ -1,14 +1,14 @@
 const fs = require('fs')
 
 
-// fs.readFile('f1.txt' , cb)
+fs.readFile('f1.txt' , cb)
 
-// function cb(err , data){
-//     if(err){
-//        console.log(err)
-//     }
-//     console.log('File Data->  ' + data)
-// }
+function cb(err , data){
+    if(err){
+       console.log(err)
+    }
+    console.log('File Data->  ' + data)
+}
 
 
 
