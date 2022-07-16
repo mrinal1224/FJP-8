@@ -16,30 +16,41 @@ function processOrder(order) {
 
 //Promisified Solution ->
 
-// placeOrder("coffee")
-//   .then(function (orderStatus) {
-//     console.log(orderStatus);
-//     let orderIsProcessed = processOrder(orderStatus);
-//     return orderIsProcessed;
-//   })
-//   .then(function (servedOrder) {
-//     console.log(servedOrder);
-//   })
-//   .catch(function (orderStatus) {
-//     console.log(orderStatus);
-//   });
+placeOrder("coffee")
+  .then(function (orderStatus) {
+    console.log(orderStatus);
+    let orderIsProcessed = processOrder(orderStatus);
+    return orderIsProcessed;
+  })
+  .then(function (servedOrder) {
+    console.log(servedOrder);
+  })
+  .catch(function (orderStatus) {
+    console.log(orderStatus);
+  });
 
 // Async Await
 
 async function serveOrder() {
   try {
     let orderStatus = await placeOrder("coffee");
-    console.log(orderStatus);
+    console.log(orderStatus); // order is placed
     let orderServed = await processOrder(orderStatus);
     console.log(orderServed);
   } catch (error) {
     console.log(error);
   }
+
+
+ 
 }
 
+
+
+
 serveOrder();
+
+
+
+
+
