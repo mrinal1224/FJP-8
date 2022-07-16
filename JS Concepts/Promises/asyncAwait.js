@@ -14,15 +14,32 @@ function processOrder(order) {
   });
 }
 
-placeOrder("coffee")
-  .then(function (orderStatus) {
+//Promisified Solution ->
+
+// placeOrder("coffee")
+//   .then(function (orderStatus) {
+//     console.log(orderStatus);
+//     let orderIsProcessed = processOrder(orderStatus);
+//     return orderIsProcessed;
+//   })
+//   .then(function (servedOrder) {
+//     console.log(servedOrder);
+//   })
+//   .catch(function (orderStatus) {
+//     console.log(orderStatus);
+//   });
+
+// Async Await
+
+async function serveOrder() {
+  try {
+    let orderStatus = await placeOrder("coffee");
     console.log(orderStatus);
-    let orderIsProcessed = processOrder(orderStatus);
-    return orderIsProcessed;
-  })
-  .then(function (servedOrder) {
-    console.log(servedOrder);
-  })
-  .catch(function (orderStatus) {
-    console.log(orderStatus);
-  });
+    let orderServed = await processOrder(orderStatus);
+    console.log(orderServed);
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+serveOrder();
