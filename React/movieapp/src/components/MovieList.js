@@ -15,6 +15,7 @@ export class MovieList extends Component {
     this.state = {
       hover: "",
       movies: [],
+      parr : [1],
       currPage : 1
     };
   }
@@ -37,10 +38,26 @@ export class MovieList extends Component {
     const movieDataApi = res.data.results
 
     this.setState({
-      currPage :this.state.currPage+1,
       movies : [...movieDataApi]
     })
 
+  }
+
+
+  handleNext =()=>{
+    let tempArr = []
+
+    for(let i=1 ; i<=this.state.parr.length+1 ; i++){
+      tempArr.push(i)
+    }
+
+
+    console.log(tempArr)
+
+    this.setState({
+            parr:[...tempArr],
+            currPage : this.state.currPage+1
+    } , this.changePage)
   }
 
 
@@ -78,17 +95,22 @@ export class MovieList extends Component {
               )}
             </div>
           ))}
-          <button onClick={()=>this.changePage}>Increment Page</button>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
           <nav aria-label="...">
             <ul class="pagination">
-              <li class="page-item disabled">
+              <li class="page-item ">
                 <a class="page-link">Previous</a>
               </li>
+
+              {this.state.parr.map((value)=>(
+               <li class="page-item">
+               <a class="page-link">{value}</a>
+             </li>
+              ))}
               <li class="page-item">
-                <a class="page-link" href="#">
+                <a class="page-link" href="#" onClick={this.handleNext}>
                   Next
                 </a>
               </li>
