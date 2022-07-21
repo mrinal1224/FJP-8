@@ -10,26 +10,43 @@ export class MovieList extends Component {
   constructor() {
     super();
 
+    console.log('Constructor first')
+
     this.state = {
       hover: "",
       movies: [],
+      currPage : 1
     };
   }
 
-
+  // Component did mount will only work once in the lifecyle of a component
   async componentDidMount(){
-    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=8`)
+    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=${this.state.currPage}`)
     const movieDataApi = res.data.results
 
     this.setState({
       movies : [...movieDataApi]
     })
+
+    console.log('Mounting third')
+  }
+
+ // we created another method to update the state
+  changePage = async()=>{
+    const res = await axios.get(`https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=${this.state.currPage}`)
+    const movieDataApi = res.data.results
+
+    this.setState({
+      currPage :this.state.currPage+1,
+      movies : [...movieDataApi]
+    })
+
   }
 
 
   render() {
 
-    console.log('render')
+    console.log('render second')
     return (
       <>
         <div>
@@ -61,6 +78,7 @@ export class MovieList extends Component {
               )}
             </div>
           ))}
+          <button onClick={()=>this.changePage}>Increment Page</button>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
