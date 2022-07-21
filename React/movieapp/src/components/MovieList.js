@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 
-import axios from "axios";
+import {movies} from '../movieData'
+
+
 
 export class MovieList extends Component {
   constructor() {
@@ -9,50 +11,15 @@ export class MovieList extends Component {
     this.state = {
       hover: "",
       movies: [],
-      currPage :1,
-      parr : [1]
     };
   }
 
 
-  async componentDidMount() {
-    const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=${this.state.currPage}`
-    );
-    // console.log(res.data)
-
-    let movieDataFromApi = res.data;
-
-    this.setState({
-      movies: [...movieDataFromApi.results],
-    });
-  }
-
-
-  changeMovies = async()=>{
-    const res = await axios.get(
-      `https://api.themoviedb.org/3/movie/popular?api_key=0b5415eb9bf023d556ef265b425e0e4a&language=en-US&page=${this.state.currPage}`
-    );
-    // console.log(res.data)
-
-    let movieDataFromApi = res.data;
-    
-
-    this.setState({
-      movies: [...movieDataFromApi.results],
-    });
-  }
-
-
-  IncrementPage = ()=>{
-      this.setState({
-        currPage : this.state.currPage+1
-      } , this.changeMovies)
-  }
 
 
 
   render() {
+    let movieData = movies.results
     return (
       <>
         <div>
@@ -62,7 +29,7 @@ export class MovieList extends Component {
         </div>
 
         <div className="movies-list">
-          {this.state.movies.map((movieElem) => (
+          {movieData.map((movieElem) => (
             <div
               className="card movie-card"
               onMouseEnter={() => this.setState({ hover: movieElem.id })}
@@ -84,7 +51,6 @@ export class MovieList extends Component {
               )}
             </div>
           ))}
-          <button onClick={this.IncrementPage}>Increment Page</button>
         </div>
 
         <div style={{ display: "flex", justifyContent: "center" }}>
@@ -93,16 +59,6 @@ export class MovieList extends Component {
               <li class="page-item disabled">
                 <a class="page-link">Previous</a>
               </li>
-
-              {this.state.parr.map((value)=>{
-                  <li class="page-item">
-                  <a class="page-link" href="#">
-                    {value}
-                  </a>
-                </li>
-              })}
-
-               
               <li class="page-item">
                 <a class="page-link" href="#">
                   Next
