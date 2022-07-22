@@ -1,5 +1,3 @@
 
- a = 10
-
-
-console.log(a)
+let randomNumber = Math.floor(Math.random()*10)
+console.log(randomNumber)
