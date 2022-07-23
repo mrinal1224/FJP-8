@@ -1,8 +1,17 @@
 import React, { Component } from "react";
 
-import {movies} from '../movieData'
+import { movies } from "../movieData";
 
 export class Favourites extends Component {
+      constructor(){
+       super();
+
+
+       this.state ={
+              genres : ['All Movies' , 'Action' , 'Comedy' , 'Romance']
+       }
+      }
+
   render() {
     let genreids = {
       28: "Action",
@@ -26,26 +35,33 @@ export class Favourites extends Component {
       37: "Western",
     };
 
-
-    let movieData = movies.results
+    let movieData = movies.results;
 
     return (
       <div className="main">
         <div className="row">
           <div className="col-3">
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item">Action</li>
-              <li class="list-group-item">Comedy</li>
-              <li class="list-group-item">Romance</li>
-              <li class="list-group-item">Fantasy</li>
-              <li class="list-group-item">Animation</li>
+            <ul class="list-group genre-selector">
+
+              {this.state.genres.map((genre)=>(
+                     <li style={{background : 'white' , color:' #3f51b5' , fontWeight:'bold'}} className='list-group-item'>{genre}</li>
+              ))}
+           
             </ul>
           </div>
 
           <div className="col-9 favourites-table">
+              <div className="row">
+
+                     <input type='text' placeholder="Search" className="input-group-text col"/>
+
+                     <input type='number' className="input-group-text col"/>
+              </div>
+              <div className="row">
             <table class="table">
               <thead>
                 <tr>
+                 <th></th>
                   <th scope="col">Title</th>
                   <th scope="col">Genre</th>
                   <th scope="col">Popularity</th>
@@ -53,18 +69,20 @@ export class Favourites extends Component {
                 </tr>
               </thead>
               <tbody>
-
-              {movieData.map((movieObj)=>(
-                      <tr>
-                      <th scope="row">{movieObj.title}</th>
-                      <td>{genreids[movieObj.genre_ids[0]]}</td>
-                      <td>{movieObj.popularity}</td>
-                      <td>{movieObj.vote_average}</td>
-                    </tr>
-              ))}
-               
+                {movieData.map((movieObj) => (
+                  <tr>
+                     <td>
+                            <img style={{width:'6rem'}} src={`https://image.tmdb.org/t/p/original${movieObj.backdrop_path}`}/>
+                     </td>
+                    <th scope="row">{movieObj.title}</th>
+                    <td>{genreids[movieObj.genre_ids[0]]}</td>
+                    <td>{movieObj.popularity}</td>
+                    <td>{movieObj.vote_average}</td>
+                  </tr>
+                ))}
               </tbody>
             </table>
+            </div>
           </div>
         </div>
       </div>
