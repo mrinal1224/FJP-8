@@ -13,6 +13,8 @@ export class MovieList extends Component {
       movies: [],
       parr: [1],
       currPage: 1,
+
+      favourites : []
     };
   }
 
@@ -82,6 +84,41 @@ export class MovieList extends Component {
     }
   };
 
+
+  handleFavourites =(movieObj)=>{
+          let data = JSON.parse(localStorage.getItem('movies-test') || '[]')
+
+          if(this.state.favourites.includes(movieObj.id)){
+            data = data.filter((movie)=>movie.id != movieObj.id)
+          }
+
+          else{
+            data.push(movieObj)
+          }
+
+          localStorage.setItem('movies-test' , JSON.stringify(data))
+
+          console.log(data)
+
+
+
+          this.handleFavoritesState()
+
+
+  }
+
+
+  handleFavoritesState =()=>{
+    let data = JSON.parse(localStorage.getItem('movies-test') || '[]')
+
+    let temp = data.map((movie)=> movie.id)
+
+    this.setState({
+      favourites : [...temp]
+    })
+
+  }
+
   render() {
     console.log("render second");
     return (
@@ -109,7 +146,7 @@ export class MovieList extends Component {
               <h5 class="card-title movie-title">{movieElem.original_title}</h5>
 
               {this.state.hover == movieElem.id && (
-                <a href="#" class="btn btn-primary movies-button">
+                <a class="btn btn-primary movies-button" onClick={()=> this.handleFavourites(movieElem)}>
                   Add to Favourites
                 </a>
               )}
