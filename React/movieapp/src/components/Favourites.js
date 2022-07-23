@@ -35,7 +35,7 @@ export class Favourites extends Component {
       37: "Western",
     };
 
-    let data = JSON.parse(localStorage.getItem("movies-app") || "[]");
+    let data = JSON.parse(localStorage.getItem("movies-test") || "[]");
 
     let tempArr = [];
 
