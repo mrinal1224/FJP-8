@@ -14,7 +14,7 @@ export class MovieList extends Component {
       parr: [1],
       currPage: 1,
 
-      favourites : []
+      favourites: [],
     };
   }
 
@@ -84,40 +84,31 @@ export class MovieList extends Component {
     }
   };
 
+  handleFavourites = (movieObj) => {
+    let data = JSON.parse(localStorage.getItem("movies-test") || "[]");
 
-  handleFavourites =(movieObj)=>{
-          let data = JSON.parse(localStorage.getItem('movies-test') || '[]')
+    if (this.state.favourites.includes(movieObj.id)) {
+      data = data.filter((movie) => movie.id != movieObj.id);
+    } else {
+      data.push(movieObj);
+    }
 
-          if(this.state.favourites.includes(movieObj.id)){
-            data = data.filter((movie)=>movie.id != movieObj.id)
-          }
+    localStorage.setItem("movies-test", JSON.stringify(data));
 
-          else{
-            data.push(movieObj)
-          }
+    console.log(data);
 
-          localStorage.setItem('movies-test' , JSON.stringify(data))
+    this.handleFavoritesState();
+  };
 
-          console.log(data)
+  handleFavoritesState = () => {
+    let data = JSON.parse(localStorage.getItem("movies-test") || "[]");
 
-
-
-          this.handleFavoritesState()
-
-
-  }
-
-
-  handleFavoritesState =()=>{
-    let data = JSON.parse(localStorage.getItem('movies-test') || '[]')
-
-    let temp = data.map((movie)=> movie.id)
+    let temp = data.map((movie) => movie.id);
 
     this.setState({
-      favourites : [...temp]
-    })
-
-  }
+      favourites: [...temp],
+    });
+  };
 
   render() {
     console.log("render second");
@@ -146,8 +137,11 @@ export class MovieList extends Component {
               <h5 class="card-title movie-title">{movieElem.original_title}</h5>
 
               {this.state.hover == movieElem.id && (
-                <a class="btn btn-primary movies-button" onClick={()=> this.handleFavourites(movieElem)}>
-                  Add to Favourites
+                <a
+                  class="btn btn-primary movies-button text-center"
+                  onClick={() => this.handleFavourites(movieElem)}
+                >
+                 {this.state.favourites.includes(movieElem.id)? 'Remove' : 'Add To favourites'}
                 </a>
               )}
             </div>
