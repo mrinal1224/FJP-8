@@ -8,9 +8,10 @@ export class Favourites extends Component {
 
     this.state = {
       genres: [],
-      movies: [],
+      
       currGenre : 'All Genres',
-      currText : ''
+      currText : '',
+      movies: [],
     };
   }
 
@@ -88,6 +89,8 @@ export class Favourites extends Component {
 
    let filterArr =[]
 
+    
+
    if(this.state.currText===''){
     filterArr = this.state.movies
    }
@@ -100,13 +103,13 @@ export class Favourites extends Component {
       })
    }
 
-  //  if(this.state.currGenre=='All Genres'){
-  //   filterArr = this.state.movies
-  //  }
+   if(this.state.currGenre!='All Genres'){
+    filterArr= this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]==this.state.currGenre)
+  }
 
-  //  else if(this.state.currGenre!='All Genres'){
-  //      filterArr= this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]==this.state.currGenre)
-  //     }
+ 
+
+ 
   
 
   
