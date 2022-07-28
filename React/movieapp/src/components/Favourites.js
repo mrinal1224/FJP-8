@@ -64,6 +64,53 @@ export class Favourites extends Component {
       
   }
 
+  sortPopularityDesc=()=>{
+    let temp = this.state.movies
+    temp.sort(function(objA , objB){
+        return objB.popularity-objA.popularity
+    })
+
+    this.setState({
+      movies : [...temp]
+    })
+  }
+
+
+  sortPopularityAsc=()=>{
+    let temp = this.state.movies
+    temp.sort(function(objA , objB){
+        return objA.popularity-objB.popularity
+    })
+
+    this.setState({
+      movies : [...temp]
+    })
+  }
+
+
+  sortRatingsDesc=()=>{
+    let temp = this.state.movies
+    temp.sort(function(objA , objB){
+        return objB.vote_average-objA.vote_average
+    })
+
+    this.setState({
+      movies : [...temp]
+    })
+  }
+
+
+  sortRatingsAsc=()=>{
+    let temp = this.state.movies
+    temp.sort(function(objA , objB){
+        return objA.vote_average-objB.vote_average
+    })
+
+    this.setState({
+      movies : [...temp]
+    })
+  }
+
   render() {
     let genreids = {
       28: "Action",
@@ -167,8 +214,8 @@ export class Favourites extends Component {
                     <th></th>
                     <th scope="col">Title</th>
                     <th scope="col">Genre</th>
-                    <th scope="col">Popularity</th>
-                    <th scope="col">Ratings</th>
+                    <th scope="col"><i class="fa-solid fa-sort-up" onClick={this.sortPopularityDesc}></i>Popularity<i class="fa-solid fa-sort-down" onClick={this.sortPopularityAsc}></i></th>
+                    <th scope="col"> <i class="fa-solid fa-sort-up" onClick={this.sortRatingsDesc}></i>Ratings <i class="fa-solid fa-sort-down" onClick={this.sortRatingsAsc}></i></th>
                   </tr>
                 </thead>
                 <tbody>
@@ -184,6 +231,10 @@ export class Favourites extends Component {
                       <td>{genreids[movieObj.genre_ids[0]]}</td>
                       <td>{movieObj.popularity}</td>
                       <td>{movieObj.vote_average}</td>
+
+                      <td>
+                      <button type="button" class="btn btn-danger">Delete</button>
+                      </td>
                     </tr>
                   ))}
                 </tbody>
