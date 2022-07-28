@@ -9,7 +9,8 @@ export class Favourites extends Component {
     this.state = {
       genres: [],
       movies: [],
-      currGenre : 'All Genres'
+      currGenre : 'All Genres',
+      currText : ''
     };
   }
 
@@ -87,14 +88,26 @@ export class Favourites extends Component {
 
    let filterArr =[]
 
-   if(this.state.currGenre='All genres'){
-       filterArr = this.state.movies
+   if(this.state.currText===''){
+    filterArr = this.state.movies
    }
 
-
    else{
-       filterArr = this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]==this.state.currGenre)
-   } 
+      filterArr = this.state.movies.filter((movieObj)=>{
+        
+           let title = movieObj.title.toLowerCase();
+           return title.includes(this.state.currText.toLowerCase())
+      })
+   }
+
+  //  if(this.state.currGenre=='All Genres'){
+  //   filterArr = this.state.movies
+  //  }
+
+  //  else if(this.state.currGenre!='All Genres'){
+  //      filterArr= this.state.movies.filter((movieObj)=> genreids[movieObj.genre_ids[0]]==this.state.currGenre)
+  //     }
+  
 
   
 
@@ -138,6 +151,8 @@ export class Favourites extends Component {
                 type="text"
                 placeholder="Search"
                 className="input-group-text col"
+                value={this.state.currText} onChange={(e)=> this.setState({currText :e.target.value})}
+
               />
 
               <input type="number" className="input-group-text col" />
