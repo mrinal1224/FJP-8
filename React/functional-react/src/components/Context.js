@@ -10,7 +10,7 @@ function Context() {
     
       <context.Provider value={{fName , lName}}>
         <h3>This is Parent Compoenet</h3>
-        <ChildA firstNameA={fName} lastNameA={lName} />
+        <ChildA/>
       </context.Provider>
 
       // Providing Props
