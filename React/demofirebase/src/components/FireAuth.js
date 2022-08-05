@@ -7,6 +7,12 @@ const FireAuth = () => {
        const [email , setEmail] = useState('')
        const [password , setPassword] = useState('')
        const [user , setUser] = useState('')
+
+
+       const create = async ()=>{
+          let userCreated = await auth.createUserWithEmailAndPassword(email , password)
+          console.log(userCreated)
+       }
   return (
     <div>
 
@@ -15,7 +21,7 @@ const FireAuth = () => {
        <label>password</label>
        <input type='password' value={password} onChange={(e)=>setPassword(e.target.value)}/>
 
-       <button>Sign Up</button>
+       <button onClick={create}>Sign Up</button>
        <button>Log In</button>
     </div>
   )
