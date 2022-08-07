@@ -4,6 +4,8 @@ import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
+import Alert from '@mui/material/Alert';
+import TextField from '@mui/material/TextField';
 
 import {createUseStyles} from 'react-jss'
 
@@ -16,6 +18,7 @@ export default function SignUp() {
        const useStyles = createUseStyles({
               text1 : {
                      color : 'grey',
+                     textAlign : 'center'
 
               }
        })
@@ -36,10 +39,17 @@ export default function SignUp() {
             <Typography variant='subtitle1' className={classes.text1}>
               Sign up to see photos and videos from your friends
             </Typography>
-            <Typography variant="body2" color="text.secondary">
-              Lizards are a widespread group of squamate reptiles, with over
-              6,000 species, ranging across all continents except Antarctica
-            </Typography>
+            {true && <Alert severity="error">This is an error alert — check it out!</Alert>}
+
+            <TextField id="outlined-basic" label="Email" variant="outlined" margin='dense' fullWidth={true} size='small' />
+            <TextField id="outlined-basic" label="Password" variant="outlined" margin='dense' fullWidth={true} size='small' />
+            <TextField id="outlined-basic" label="Full Name" variant="outlined" margin='dense' fullWidth={true} size='small' />
+
+            <Button color="secondary" variant='outlined' fullWidth={true} component='label' >Upload Profile Picture
+             <input type='file' accept="image/*" hidden/>
+            
+            </Button>
+           
           </CardContent>
           <CardActions>
             <Button size="small">Share</Button>
