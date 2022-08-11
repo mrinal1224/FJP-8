@@ -40,8 +40,8 @@ export default function SignUp() {
 
 
   return (
-    <div className="signupWrapper">
-      <div className='signupCard'>
+    <div className="loginWrapper">
+      <div className='loginCard'>
         <Card sx={{ maxWidth: 345 }}>
 
               <div className='insta-logo'>

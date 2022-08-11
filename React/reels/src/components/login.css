@@ -1,0 +1,10 @@
+.loginWrapper{
+       display: flex;
+       justify-content: center;
+}
+
+.loginCard{
+       width : 27vw;
+       margin-top: 5%;
+
+}
