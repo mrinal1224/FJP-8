@@ -10,6 +10,7 @@ import TextField from '@mui/material/TextField';
 import {createUseStyles} from 'react-jss'
 
 import instaLogo from '../Assets/Instagram.JPG'
+import {Link} from "react-router-dom"
 
 import './signup.css'
 
@@ -72,7 +73,7 @@ export default function SignUp() {
 
         <Card sx={{ maxWidth: 345 }} className={classes.card2}>
               <Typography>
-                     Have an Account? Log in
+                     Have an Account? <Link to='/login' style={{textDecoration : 'none'}}>Log in</Link> 
               </Typography>
         </Card>
       </div>

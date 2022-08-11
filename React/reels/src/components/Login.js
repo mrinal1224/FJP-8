@@ -23,6 +23,8 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 import "./login.css";
 
+import {Link} from 'react-router-dom'
+
 export default function SignUp() {
   const useStyles = createUseStyles({
     text1: {
@@ -131,7 +133,7 @@ export default function SignUp() {
         </Card>
 
         <Card sx={{ maxWidth: 345 }} className={classes.card2}>
-          <Typography>New User? Sign up</Typography>
+          <Typography>New User? <Link to='/' style={{textDecoration : 'none'}}>Sign up</Link></Typography>
         </Card>
       </div>
     </div>
