@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -35,6 +36,18 @@ export default function SignUp() {
 
        const classes = useStyles()
 
+       const [email , setEmail] = useState('')
+       const [password , setPassword] = useState('')
+       const [name , setName] = useState('')
+       const [file, setFile] = useState(null)
+       const [error , setError] = useState('')
+       const [loading , setLoading] = useState(false)
+
+       console.log(email)
+       console.log(password)
+       console.log(name)
+
+
 
   return (
     <div className="signupWrapper">
@@ -49,11 +62,11 @@ export default function SignUp() {
             <Typography variant='subtitle1' className={classes.text1}>
               Sign up to see photos and videos from your friends
             </Typography>
-            {true && <Alert severity="error">This is an error alert — check it out!</Alert>}
+            {error!='' && <Alert severity="error">This is an error alert — check it out!</Alert>}
 
-            <TextField id="outlined-basic" label="Email" variant="outlined" margin='dense' fullWidth={true} size='small' />
-            <TextField id="outlined-basic" label="Password" variant="outlined" margin='dense' fullWidth={true} size='small' />
-            <TextField id="outlined-basic" label="Full Name" variant="outlined" margin='dense' fullWidth={true} size='small' />
+            <TextField id="outlined-basic" label="Email" variant="outlined" margin='dense' fullWidth={true} size='small' value={email} onChange={(e)=>setEmail(e.target.value)} />
+            <TextField id="outlined-basic" label="Password" variant="outlined" margin='dense' fullWidth={true} size='small'value={password} onChange={(e)=>setPassword(e.target.value)} />
+            <TextField id="outlined-basic" label="Full Name" variant="outlined" margin='dense' fullWidth={true} size='small' value={name} onChange={(e)=>setName(e.target.value)} />
 
             <Button color="secondary" variant='outlined' fullWidth={true} component='label' className={classes.buttonMargin} >Upload Profile Picture
              <input type='file' accept="image/*" hidden/>

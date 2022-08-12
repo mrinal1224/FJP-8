@@ -1,4 +1,5 @@
 import * as React from "react";
+import { useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -8,6 +9,8 @@ import Alert from "@mui/material/Alert";
 import TextField from "@mui/material/TextField";
 
 import { createUseStyles } from "react-jss";
+
+import {AuthContext} from "../Context/AuthContext"
 
 import instaLogo from "../Assets/Instagram.JPG";
 import insta from "../Assets/insta.png";
@@ -26,6 +29,9 @@ import "./login.css";
 import {Link} from 'react-router-dom'
 
 export default function SignUp() {
+
+  // const test = useContext(AuthContext)
+  // console.log(test)
   const useStyles = createUseStyles({
     text1: {
       color: "grey",
