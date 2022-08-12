@@ -8,12 +8,14 @@ import Typography from "@mui/material/Typography";
 import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 
+import { database , storage } from "../firebase";
+
 import {createUseStyles} from 'react-jss'
 
 import { AuthContext } from "../Context/AuthContext";
 
 import instaLogo from '../Assets/Instagram.JPG'
-import {Link} from "react-router-dom"
+import {Link , useNavigate} from "react-router-dom"
 
 import './signup.css'
 
@@ -45,6 +47,8 @@ export default function SignUp() {
        const [error , setError] = useState('')
        const [loading , setLoading] = useState(false)
 
+       const navigate = useNavigate()
+
 
        const {signup} = useContext(AuthContext)
 
@@ -60,7 +64,41 @@ export default function SignUp() {
 
          try {
                let userObj = await signup(email , password)
+               let uid = userObj.user.uid
                console.log(userObj)
+
+               const uploadImage = storage.ref(`/users/${uid}/ProfileImage`).put(file)
+               uploadImage.on('state_changed' , fn1 , fn2,fn3)
+
+               function fn1(snapshot){
+                let progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+                console.log(`upload is ${progress} complete`)
+               }
+
+               function fn2(){
+                setError(error);
+                setTimeout(()=>{
+                    setError('')
+                },2000);
+                setLoading(false)
+                return;
+               }
+
+               function fn3(){
+                uploadImage.snapshot.ref.getDownloadURL().then((url)=>{
+                  console.log(url)
+                  database.users.doc(uid).set({
+                    email : email,
+                    userId : uid,
+                    fullname : name,
+                    profileUrl : url,
+                    createdAt : database.getTimestamp()
+                  })
+                })
+
+                setLoading(false)
+                navigate('/')
+               }
 
           
          } catch (error) {
@@ -104,7 +142,7 @@ export default function SignUp() {
           </CardContent>
           <CardActions>
          
-            <Button  variant="contained" fullWidth={true} onClick={handleClick}>Sign Up</Button>
+            <Button  variant="contained" fullWidth={true} disable={loading} onClick={handleClick}>Sign Up</Button>
           </CardActions>
         </Card>
 
