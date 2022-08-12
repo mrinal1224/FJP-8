@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useState } from "react";
+import { useState , useContext } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -9,6 +9,8 @@ import Alert from '@mui/material/Alert';
 import TextField from '@mui/material/TextField';
 
 import {createUseStyles} from 'react-jss'
+
+import { AuthContext } from "../Context/AuthContext";
 
 import instaLogo from '../Assets/Instagram.JPG'
 import {Link} from "react-router-dom"
@@ -43,9 +45,30 @@ export default function SignUp() {
        const [error , setError] = useState('')
        const [loading , setLoading] = useState(false)
 
-       console.log(email)
-       console.log(password)
-       console.log(name)
+
+       const {signup} = useContext(AuthContext)
+
+
+       const handleClick = async()=>{
+         if(file==null){
+          setError('Profile Picture not uploaded')
+          setTimeout(()=>{
+                     setError('')
+          } , 2000)
+          return
+         }
+
+         try {
+               let userObj = await signup(email , password)
+               console.log(userObj)
+
+          
+         } catch (error) {
+          
+         }
+       }
+
+      
 
 
 
@@ -69,7 +92,7 @@ export default function SignUp() {
             <TextField id="outlined-basic" label="Full Name" variant="outlined" margin='dense' fullWidth={true} size='small' value={name} onChange={(e)=>setName(e.target.value)} />
 
             <Button color="secondary" variant='outlined' fullWidth={true} component='label' className={classes.buttonMargin} >Upload Profile Picture
-             <input type='file' accept="image/*" hidden/>
+             <input type='file' accept="image/*" hidden onChange={(e)=>setFile(e.target.files[0])}/>
             
             </Button>
 
@@ -80,7 +103,7 @@ export default function SignUp() {
           </CardContent>
           <CardActions>
          
-            <Button  variant="contained" fullWidth={true}>Sign Up</Button>
+            <Button  variant="contained" fullWidth={true} onClick={handleClick}>Sign Up</Button>
           </CardActions>
         </Card>
 
