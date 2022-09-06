@@ -100,7 +100,7 @@ export default function SignUp() {
       //           })
 
       //           setLoading(false)
-      //           navigate('/')
+      //          
       //          }
 
           
@@ -164,6 +164,7 @@ export default function SignUp() {
             }
           );
           console.log("user signed up");
+          navigate('/feed')
         }
         catch (err) {
           console.log("err", err);

@@ -2,6 +2,7 @@
 import './App.css';
 import SignUp from './components/SignUp';
 import Login from "./components/Login"
+import Feed from './components/Feed';
 
 import { AuthProvider } from './Context/AuthContext';
 
@@ -18,6 +19,8 @@ function App() {
 
         <Route path='/' element={<SignUp/>}/>
         <Route path='/login' element={<Login/>}/>
+        <Route path='/feed' element={<Feed/>}/>
+       
        </Routes>
        </AuthProvider>
       </BrowserRouter>
