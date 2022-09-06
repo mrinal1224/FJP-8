@@ -158,16 +158,7 @@ export default function SignUp() {
                   profileUrl:downloadURL,
                   createdAt:database.getTimestamp()
               })
-                // let userData = {
-                //   name,
-                //   email,
-                //   password,
-                //   downloadURL,
-                //   uid: userInfo.user.uid,
-                // };
-                //                 // db,collection name, document name
-                // await setDoc(doc(database, "users", userInfo.user.uid), userData);
-                // console.log("doc added to db");
+           
     
               });
             }
