@@ -12,7 +12,7 @@ import { database, storage } from "../firebase";
 
 import { createUseStyles } from "react-jss";
 
-import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytesResumable, getDownloadURL, uploadString } from "firebase/storage";
 
 import { AuthContext } from "../Context/AuthContext";
 
@@ -50,6 +50,8 @@ export default function SignUp() {
   const [error , setError] = useState('')
   const [loading , setLoading] = useState(false)
 
+  const navigate = useNavigate()
+
 
  let handleClick = async ()=>{
       console.log(email)
@@ -61,6 +63,7 @@ export default function SignUp() {
         setLoading(true)
         const userInfo = await signup(email , password)
         console.log(userInfo.user.uid)
+        let uid =  userInfo.user.uid
         
 
 
@@ -71,10 +74,25 @@ export default function SignUp() {
           const progress =
                 (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
               console.log("Upload is " + progress + "% done");
+        },
+        (error) => {
+          // A full list of error codes is available at
+          // https://firebase.google.com/docs/storage/web/handle-errors
+          console.log(error);
+        }, ()=>{
+                   getDownloadURL(uploadTask.snapshot.ref).then(async(downloadURL)=>{
+                    database.users.doc(uid).set({
+                      email:email,
+                      userId:uid,
+                      fullname:name,
+                      profileUrl:downloadURL,
+                      createdAt:database.getTimestamp()
+                  })
+                   })
         })
 
 
-        
+        navigate('/feed')
       } catch (error) {
         console.log(error)
       }
