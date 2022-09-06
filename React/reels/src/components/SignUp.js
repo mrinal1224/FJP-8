@@ -13,7 +13,7 @@ import { database , storage } from "../firebase";
 import {createUseStyles} from 'react-jss'
 
 import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
-import { setDoc,doc } from 'firebase/firestore';
+
 
 import { AuthContext } from "../Context/AuthContext";
 

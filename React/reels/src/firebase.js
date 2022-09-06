@@ -11,7 +11,7 @@ import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 import 'firebase/compat/storage'
 
-import { getFirestore } from "firebase/firestore";
+
 
 
 // Your web app's Firebase configuration
