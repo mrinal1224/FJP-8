@@ -12,6 +12,9 @@ import { database , storage } from "../firebase";
 
 import {createUseStyles} from 'react-jss'
 
+import { ref, uploadBytesResumable, getDownloadURL } from "firebase/storage";
+import { setDoc,doc } from 'firebase/firestore';
+
 import { AuthContext } from "../Context/AuthContext";
 
 import instaLogo from '../Assets/Instagram.JPG'
@@ -53,59 +56,135 @@ export default function SignUp() {
        const {signup} = useContext(AuthContext)
 
 
-       const handleClick = async()=>{
-         if(file==null){
-          setError('Profile Picture not uploaded')
-          setTimeout(()=>{
-                     setError('')
-          } , 2000)
-          return
-         }
+      //  const handleClick = async()=>{
+      //    if(file==null){
+      //     setError('Profile Picture not uploaded')
+      //     setTimeout(()=>{
+      //                setError('')
+      //     } , 2000)
+      //     return
+      //    }
 
-         try {
-               let userObj = await signup(email , password)
-               let uid = userObj.user.uid
-               console.log(userObj)
+      //    try {
+      //          let userObj = await signup(email , password)
+      //          let uid = userObj.user.uid
+      //          console.log(userObj)
 
-               const uploadImage = storage.ref(`/users/${uid}/ProfileImage`).put(file)
-               uploadImage.on('state_changed' , fn1 , fn2,fn3)
+      //          const uploadImage = storage.ref(`/users/${uid}/ProfileImage`).put(file)
+      //          uploadImage.on('state_changed' , fn1 , fn2,fn3)
 
-               function fn1(snapshot){
-                let progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
-                console.log(`upload is ${progress} complete`)
-               }
+      //          function fn1(snapshot){
+      //           let progress = (snapshot.bytesTransferred/snapshot.totalBytes)*100
+      //           console.log(`upload is ${progress} complete`)
+      //          }
 
-               function fn2(){
-                setError(error);
-                setTimeout(()=>{
-                    setError('')
-                },2000);
-                setLoading(false)
-                return;
-               }
+      //          function fn2(){
+      //           setError(error);
+      //           setTimeout(()=>{
+      //               setError('')
+      //           },2000);
+      //           setLoading(false)
+      //           return;
+      //          }
 
-               function fn3(){
-                uploadImage.snapshot.ref.getDownloadURL().then((url)=>{
-                  console.log(url)
-                  database.users.doc(uid).set({
-                    email : email,
-                    userId : uid,
-                    fullname : name,
-                    profileUrl : url,
-                    createdAt : database.getTimestamp()
-                  })
-                })
+      //          function fn3(){
+      //           uploadImage.snapshot.ref.getDownloadURL().then((url)=>{
+      //             console.log(url)
+      //             database.users.doc(uid).set({
+      //               email : email,
+      //               userId : uid,
+      //               fullname : name,
+      //               profileUrl : url,
+      //               createdAt : database.getTimestamp()
+      //             })
+      //           })
 
-                setLoading(false)
-                navigate('/')
-               }
+      //           setLoading(false)
+      //           navigate('/')
+      //          }
 
           
-         } catch (error) {
-            setError(error)
-            console.log(error)
-         }
-       }
+      //    } catch (error) {
+      //       setError(error)
+      //       console.log(error)
+      //    }
+      //  }
+
+
+
+
+      let handleClick = async() => {
+        console.log(email);
+        console.log(password);
+        console.log(name);
+        console.log(file);
+        try {
+          setLoading(true);
+          setError("");
+          const userInfo = await signup(email, password);
+          console.log(userInfo.user.uid);
+          let uid = userInfo.user.uid
+          
+          
+          // Upload file and metadata to the object 'images/mountains.jpg'
+          const storageRef = ref(storage, `${userInfo.user.uid}/Profile`);
+          const uploadTask = uploadBytesResumable(storageRef, file);
+          // Register three observers:
+          // 1. 'state_changed' observer, called any time the state changes
+          // 2. Error observer, called on failure
+          // 3. Completion observer, called on successful completion
+          uploadTask.on(
+            "state_changed",
+            (snapshot) => {
+              // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+              const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+            },
+            (error) => {
+              // A full list of error codes is available at
+              // https://firebase.google.com/docs/storage/web/handle-errors
+              console.log(error);
+            },
+            () => {
+              // Upload completed successfully, now we can get the download URL
+              getDownloadURL(uploadTask.snapshot.ref).then(async (downloadURL) => {
+                console.log("File available at", downloadURL);
+
+                database.users.doc(uid).set({
+                  email:email,
+                  userId:uid,
+                  fullname:name,
+                  profileUrl:downloadURL,
+                  createdAt:database.getTimestamp()
+              })
+                // let userData = {
+                //   name,
+                //   email,
+                //   password,
+                //   downloadURL,
+                //   uid: userInfo.user.uid,
+                // };
+                //                 // db,collection name, document name
+                // await setDoc(doc(database, "users", userInfo.user.uid), userData);
+                // console.log("doc added to db");
+    
+              });
+            }
+          );
+          console.log("user signed up");
+        }
+        catch (err) {
+          console.log("err", err);
+          setError(err.code);
+          // use settimeout to remove error after 2sec
+          setTimeout(() => {
+            setError("");
+          }, 2000);
+        }
+        setLoading(false);
+      
+      }
 
       
 

@@ -11,15 +11,17 @@ import 'firebase/compat/auth'
 import 'firebase/compat/firestore'
 import 'firebase/compat/storage'
 
+import { getFirestore } from "firebase/firestore";
+
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-       apiKey: "AIzaSyCl8qbbHUJwyoXwzUlDLJgOfNcfA1flYME",
-       authDomain: "reels-fjp8.firebaseapp.com",
-       projectId: "reels-fjp8",
-       storageBucket: "reels-fjp8.appspot.com",
-       messagingSenderId: "892888970524",
-       appId: "1:892888970524:web:ffc7a6938f5e084d00f6d9"
+  apiKey: "AIzaSyCyCPdiDX5MAH1xxDkaU2_B7Z-BFDH8Zy0",
+  authDomain: "reels-f8.firebaseapp.com",
+  projectId: "reels-f8",
+  storageBucket: "reels-f8.appspot.com",
+  messagingSenderId: "656124205428",
+  appId: "1:656124205428:web:97350e5edb2d325488f421"
      };
 
 // Initialize Firebase
