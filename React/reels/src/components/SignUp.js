@@ -40,6 +40,8 @@ export default function SignUp() {
 
   const classes = useStyles();
 
+  const {signup} = useContext(AuthContext)
+
 
   const [email , setEmail] = useState('')
   const [password , setPassword] = useState('')
@@ -54,6 +56,31 @@ export default function SignUp() {
       console.log(password)
       console.log(name)
       console.log(file)
+
+      try {
+        setLoading(true)
+        const userInfo = await signup(email , password)
+        console.log(userInfo.user.uid)
+        
+
+
+        const storageRef = ref(storage , `${userInfo.user.uid}/Profile`)
+        const uploadTask = uploadBytesResumable(storageRef , file)
+
+        uploadTask.on('state_changed' , (snapshot)=>{
+          const progress =
+                (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+              console.log("Upload is " + progress + "% done");
+        })
+
+
+        
+      } catch (error) {
+        console.log(error)
+      }
+
+
+
  }
 
   return (
