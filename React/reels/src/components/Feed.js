@@ -1,9 +1,14 @@
-import React from 'react'
+import React from "react";
+import UploadFile from "./UploadFile";
 
 const Feed = () => {
   return (
-    <div>Welcome to Reels</div>
-  )
-}
+    <>
+      <div>Welcome to Reels</div>
 
-export default Feed
+      <UploadFile />
+    </>
+  );
+};
+
+export default Feed;
