@@ -1,5 +1,5 @@
 import * as React from "react";
-import { useContext } from "react";
+import { useContext , useState } from "react";
 import Card from "@mui/material/Card";
 import CardActions from "@mui/material/CardActions";
 import CardContent from "@mui/material/CardContent";
@@ -26,7 +26,7 @@ import "pure-react-carousel/dist/react-carousel.es.css";
 
 import "./login.css";
 
-import {Link} from 'react-router-dom'
+import {Link , useNavigate} from 'react-router-dom'
 
 export default function SignUp() {
 
@@ -53,6 +53,43 @@ export default function SignUp() {
   });
 
   const classes = useStyles();
+
+
+  const [email , setEmail] = useState('')
+  const [password , setPassword] = useState('')
+  const [error , setError] = useState('')
+  const [loading , setLoading] = useState(false)
+
+  const navigate = useNavigate()
+
+
+  const {login}  = useContext(AuthContext)
+
+  const handleClick = async ()=>{
+
+    try {
+
+      setError('')
+      setLoading(true)
+
+      let res = await login(email , password)
+
+      setLoading(false)
+      navigate('/feed')
+      
+    } catch (error) {
+       setError(true)
+       setTimeout(()=>{
+        setError('')
+       } , 2000)
+
+       setLoading(false)
+    }
+      
+      
+  }
+
+
 
   return (
     <div className="loginWrapper">
@@ -101,7 +138,7 @@ export default function SignUp() {
           </div>
 
           <CardContent>
-            {true && (
+            {error!='' && (
               <Alert severity="error">
                 This is an error alert — check it out!
               </Alert>
@@ -114,6 +151,8 @@ export default function SignUp() {
               margin="dense"
               fullWidth={true}
               size="small"
+              value = {email}
+              onChange={(e)=> setEmail(e.target.value)}
             />
             <TextField
               id="outlined-basic"
@@ -122,6 +161,8 @@ export default function SignUp() {
               margin="dense"
               fullWidth={true}
               size="small"
+              value = {password}
+              onChange={(e)=> setPassword(e.target.value)}
             />
             <Typography
               variant="subtitle1"
@@ -132,7 +173,7 @@ export default function SignUp() {
             </Typography>
           </CardContent>
           <CardActions>
-            <Button variant="contained" fullWidth={true}>
+            <Button variant="contained" fullWidth={true} onClick={handleClick}>
               Log in
             </Button>
           </CardActions>
