@@ -33,6 +33,7 @@ const firestore = firebase.firestore()
 
 export const database = {
   users : firestore.collection('users'),
+  posts : firestore.collection('posts'),
   getTimestamp : firebase.firestore.FieldValue.serverTimestamp
 }
 
