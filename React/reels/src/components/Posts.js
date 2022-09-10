@@ -1,5 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { database } from "../firebase";
+import CircularProgress from '@mui/material/CircularProgress';
+import Video from "./Video";
+
+import './Post.css'
 
 function Posts({ userData }) {
   const [posts, setPosts] = useState(null);
@@ -27,7 +31,21 @@ function Posts({ userData }) {
 
   return (
     <div>
-      <h1></h1>
+      {
+        posts==null || userData==null ? <CircularProgress/> :
+        <div className="video-container"> 
+              {
+                     posts.map((post , index)=>(
+                            <React.Fragment key={index}>
+                                   <div className="videos">
+                                                <Video src={post.pUrl} id={post.pId}/>
+                                   </div>
+                            </React.Fragment>
+                     ))
+              }
+        </div>
+
+      }
     </div>
   );
 }
