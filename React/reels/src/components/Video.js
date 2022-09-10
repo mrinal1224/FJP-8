@@ -4,7 +4,7 @@ import './Video.css'
 
 function Video(props) {
   return (
-    <video src={props.src} id={props.id} className='videos-styling'></video>
+    <video src={props.src} id={props.id} className='videos-styling'/>
   )
 }
 
