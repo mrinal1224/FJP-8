@@ -2,6 +2,8 @@ import React,{useContext,useEffect,useState} from 'react'
 import { AuthContext } from '../Context/AuthContext'
 import { database } from '../firebase'
 import UploadFile from './UploadFile'
+import Posts from './Posts'
+
 
 const Feed = () => {
 
@@ -22,6 +24,7 @@ const Feed = () => {
       <div>Welcome to Reels</div>
 
       <UploadFile user={userData} />
+      <Posts userData={userData}/>
     </>
   );
 };
