@@ -2,7 +2,9 @@ import React, { useState,useEffect } from 'react'
 import {database} from '../firebase';
 import CircularProgress from '@mui/material/CircularProgress';
 import Video from './Video'
+import Avatar from '@mui/material/Avatar';
 import './Post.css'
+import Like from './Like';
 
 
 function Posts({userData}) {
@@ -32,6 +34,12 @@ function Posts({userData}) {
                                 {console.log(post)}
                                 <div className="videos">
                                     <Video src={post.pUrl} id={post.pId}/>
+                                    <div className='fa'style={{display:'flex'}}>
+                                    <Avatar src={post.uProfile}/>
+                                     <h4>{post.uName}</h4>
+                                     <Like userData={userData}  postData={post} />
+                                    </div>
+                                    
                                     
                                 </div>
                             </React.Fragment>

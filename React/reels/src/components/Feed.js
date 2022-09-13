@@ -21,10 +21,12 @@ const Feed = () => {
 
   return (
     <>
-      <div>Welcome to Reels</div>
-
-      <UploadFile user={userData} />
-      <Posts userData={userData}/>
+   
+    <div style={{display:'flex',justifyContent:'center',alignItems:'center',flexDirection:'column'}}>
+           
+            <UploadFile user={userData}/>
+            <Posts userData={userData}/>
+        </div>
     </>
   );
 };
