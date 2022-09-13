@@ -8,6 +8,8 @@ import Dialog from "@mui/material/Dialog";
 import "./Post.css";
 import Like from "./Like";
 import Comment from "./Comment";
+import Card from '@mui/material/Card';
+import AddComment from "./AddComment";
 
 function Posts({ userData }) {
   const [posts, setPosts] = useState(null);
@@ -72,6 +74,17 @@ function Posts({ userData }) {
                         <source src={post.pUrl} />
                       </video>
                     </div>
+                   <Card className='card1' style={{padding:'1rem'}}>
+                             <Comment/>
+                   </Card>
+
+                   <Card variant='outlined' className="card2">
+                       
+
+
+                       <AddComment style={{display:'flex',alignItems:'center',justifyContent:'center'}} userData={userData} postData={post}  />
+                   </Card>
+
                   </div>
                 </Dialog>
               </div>
