@@ -25,13 +25,14 @@
        margin: 0;
        color: white;
        margin-top: 8%;
-       margin-left: 25%;
+       margin-left: 20%;
    }
    
    .icon-styling{
-       position: absolute;
-       bottom: 2%;
-       left: 12%;
+    position: absolute;
+    margin-top: 40%;
+    left: 8%;
+    
    }
    
    .like{
