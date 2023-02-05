@@ -1,0 +1,9 @@
+Design a weather application that displays the current weather conditions of a city of the user's choice. Utilize the OpenWeatherMap API to retrieve data and update the information on the webpage dynamically as the user searches for a different city.
+
+Create a to-do list application that allows users to add, edit, and mark tasks as complete. Store the task data using local storage so that the information persists even after the page is reloaded.
+
+Develop a music player that pulls information about the currently playing song from the Spotify Web API. Display the artist name, song title, album cover, and progress bar. Implement the ability for the user to play, pause, skip, and adjust the volume of the song.
+
+Build a recipe database that displays information about various recipes. Allow the user to filter the recipes based on categories such as cuisine type, difficulty level, and ingredients. Utilize an API such as Edamam to retrieve recipe data.
+
+Create a real estate website that displays a list of properties for sale. Each property should have a picture, price, location, and brief description. Implement a search function that allows the user to filter properties based on criteria such as price range, number of bedrooms, and location. Use an API such as Zillow to retrieve property information.
